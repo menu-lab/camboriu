@@ -251,33 +251,70 @@
       100% { transform: translate(var(--tx), var(--ty)) scale(1.2) rotate(var(--rot)); opacity: 0; }
     }
 
-    /* Botón de Música Circular y Compacto */
-    .music-btn {
+    /* ==========================================
+       CONTROLES COMPACTOS SUPERIOR DERECHA (SIN TAPAR TÍTULO)
+       ========================================== */
+    .top-right-tools {
       position: absolute;
       top: 15.2%;
-      right: 4.5%;
+      right: 4.2%;
       z-index: 25;
-      width: clamp(34px, 4.4dvh, 52px);
-      height: clamp(34px, 4.4dvh, 52px);
+      display: flex;
+      align-items: center;
+      gap: clamp(6px, 0.9dvh, 12px);
+    }
+
+    .mini-tool-btn {
+      width: clamp(34px, 4.3dvh, 50px);
+      height: clamp(34px, 4.3dvh, 50px);
       border: 2.5px solid #ffffff;
       border-radius: 50%;
-      background: linear-gradient(135deg, #009c3b 0%, #0077b6 100%);
-      color: #ffffff;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
       box-shadow: 0 4px 12px rgba(0, 55, 95, 0.35), inset 0 2px 4px rgba(255, 255, 255, 0.45);
-      transition: transform 0.2s ease, background 0.3s ease, box-shadow 0.2s ease;
-      animation: pulse-soft 2.4s infinite;
+      transition: transform 0.2s ease, background 0.3s ease;
     }
 
-    .music-btn:hover {
+    .mini-tool-btn:hover {
       transform: scale(1.08);
     }
 
-    .music-btn:active {
+    .mini-tool-btn:active {
       transform: scale(0.92);
+    }
+
+    /* Botón compacto Portugués Básico */
+    .pt-btn {
+      background: linear-gradient(135deg, #ffdf00 0%, #009c3b 100%);
+      color: #102a43;
+      border-color: #102a43;
+      font-family: 'Fredoka', sans-serif;
+      font-weight: 700;
+      font-size: clamp(11px, 1.45dvh, 17px);
+      flex-direction: column;
+      line-height: 1;
+    }
+
+    .pt-btn span.flag {
+      font-size: 1.05em;
+    }
+
+    .pt-btn span.code {
+      font-size: 0.65em;
+      background: #102a43;
+      color: #ffdf00;
+      padding: 1px 4px;
+      border-radius: 6px;
+      margin-top: 1px;
+    }
+
+    /* Botón de Música Circular */
+    .music-btn {
+      background: linear-gradient(135deg, #009c3b 0%, #0077b6 100%);
+      color: #ffffff;
+      animation: pulse-soft 2.4s infinite;
     }
 
     .music-btn.playing {
@@ -555,6 +592,11 @@
       color: #ffffff;
     }
 
+    .modal-header.pt-head {
+      background: linear-gradient(135deg, #009c3b 0%, #ffdf00 100%);
+      color: #102a43;
+    }
+
     .modal-title {
       font-size: clamp(15px, 2.1dvh, 24px);
       font-weight: 700;
@@ -685,6 +727,85 @@
       margin-bottom: 0.4em;
       text-transform: uppercase;
     }
+
+    /* ==========================================
+       ESTILOS MINI-DICCIONARIO PORTUGUÉS BÁSICO
+       ========================================== */
+    .pt-tabs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.4em;
+    }
+
+    .pt-tab-btn {
+      padding: 0.45em 0.3em;
+      border-radius: 10px;
+      border: 2px solid #102a43;
+      background: #f1f5f9;
+      color: #102a43;
+      font-family: 'Fredoka', sans-serif;
+      font-size: clamp(10px, 1.35dvh, 15px);
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .pt-tab-btn.active {
+      background: #009c3b;
+      color: #ffffff;
+    }
+
+    .pt-phrase-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.6em;
+      background: #f8fafc;
+      border: 2px solid #cbd5e1;
+      border-left: 5px solid #009c3b;
+      border-radius: 12px;
+      padding: 0.6em 0.75em;
+    }
+
+    .pt-phrase-info {
+      flex: 1;
+    }
+
+    .pt-word {
+      font-weight: 700;
+      font-size: 1.05em;
+      color: #0b2545;
+    }
+
+    .pt-pron {
+      font-size: 0.85em;
+      color: #0077b6;
+      font-style: italic;
+    }
+
+    .pt-es {
+      font-size: 0.92em;
+      color: #334155;
+      margin-top: 0.1em;
+    }
+
+    .pt-speak-btn {
+      flex-shrink: 0;
+      padding: 0.45em 0.65em;
+      border-radius: 10px;
+      border: 2px solid #102a43;
+      background: #ffdf00;
+      color: #102a43;
+      font-family: 'Fredoka', sans-serif;
+      font-weight: 700;
+      font-size: 0.88em;
+      cursor: pointer;
+      box-shadow: 0 2px 0 #102a43;
+    }
+
+    .pt-speak-btn:active {
+      transform: translateY(2px);
+      box-shadow: none;
+    }
   </style>
 </head>
 <body>
@@ -715,15 +836,22 @@
     <div class="polar-hotspot" id="polarHotspot" role="button" tabindex="0" aria-label="Tocar a Polar"></div>
     <div class="polar-speech-bubble" id="polarBubble">Polar está listo para Camboriú 😎</div>
 
-    <!-- Botón de Música Circular Compacto -->
-    <button id="musicToggle" class="music-btn" type="button" aria-label="Reproducir música" title="Música Brasil">
-      <svg id="iconPlay" viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
-      </svg>
-      <svg id="iconPause" viewBox="0 0 24 24" aria-hidden="true" style="display: none;">
-        <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
-      </svg>
-    </button>
+    <!-- Controles Compactos Superior Derecha (Portugués Básico + Música) -->
+    <div class="top-right-tools">
+      <button type="button" class="mini-tool-btn pt-btn" onclick="openModal('modalPortugues')" aria-label="Portugués básico" title="Aprende Portugués Básico">
+        <span class="flag">🇧🇷</span>
+        <span class="code">PT</span>
+      </button>
+
+      <button id="musicToggle" class="mini-tool-btn music-btn" type="button" aria-label="Reproducir música" title="Música Brasil">
+        <svg id="iconPlay" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+        </svg>
+        <svg id="iconPause" viewBox="0 0 24 24" aria-hidden="true" style="display: none;">
+          <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+        </svg>
+      </button>
+    </div>
 
     <!-- ==========================================
          BOTONERA CENTRAL (3 BOTONES)
@@ -940,6 +1068,26 @@
       </div>
     </div>
 
+    <!-- ==========================================
+         VENTANA EMERGENTE 4: PORTUGUÉS BÁSICO CON AUDIO
+         ========================================== -->
+    <div id="modalPortugues" class="modal-overlay" onclick="closeOnBackdrop(event, 'modalPortugues')">
+      <div class="modal-card">
+        <div class="modal-header pt-head">
+          <div class="modal-title">🇧🇷 Portugués Básico • Modo Camboriú</div>
+          <button type="button" class="close-modal-btn" onclick="closeModal('modalPortugues')" aria-label="Cerrar">✕</button>
+        </div>
+        <div class="modal-body">
+          <div class="pt-tabs">
+            <button type="button" class="pt-tab-btn active" onclick="renderPtCategory('saludos', this)">👋 Saludos</button>
+            <button type="button" class="pt-tab-btn" onclick="renderPtCategory('compras', this)">🥥 Compras</button>
+            <button type="button" class="pt-tab-btn" onclick="renderPtCategory('ayuda', this)">🏖️ Playa/SOS</button>
+          </div>
+          <div id="ptPhrasesList" style="display:flex; flex-direction:column; gap:0.55em;"></div>
+        </div>
+      </div>
+    </div>
+
     <!-- Reproductor oculto -->
     <audio id="bgAudio" preload="auto"></audio>
   </main>
@@ -1034,7 +1182,7 @@
       'Polar aprueba este IV° Medio A ✈️',
       'Polar dice: no olviden el permiso notarial 📄',
       'Polar activa modo vacaciones en Brasil 🌴',
-      'Polar ya tiene su tarjeta PIX lista 💳'
+      'Polar dice: Obrigado, Camboriú 🇧🇷'
     ];
 
     const burstIcons = ['🥥', '🌴', '😎', '☀️', '✈️', '🇧🇷', '🏖️'];
@@ -1092,7 +1240,68 @@
     });
 
     // ==========================================
-    // 3. CRONÓMETRO EN RETROCESO (15 DIC 2026 - 11:00 AM)
+    // 3. MINI-DICCIONARIO DE PORTUGUÉS CON VOZ
+    // ==========================================
+    const ptData = {
+      saludos: [
+        { pt: 'Oi, tudo bem?', pron: 'Se lee: "Oy, tudu bein"', es: 'Hola, ¿todo bien?' },
+        { pt: 'Bom dia / Boa tarde', pron: 'Se lee: "Bon yía / Boa tardi"', es: 'Buenos días / Buenas tardes' },
+        { pt: 'Muito obrigado / obrigada', pron: 'Se lee: "Muintu obrigadu / obrigada"', es: 'Muchas gracias (hombre / mujer)' },
+        { pt: 'Por favor / Com licença', pron: 'Se lee: "Por favor / Kon lisensa"', es: 'Por favor / Con permiso' },
+        { pt: 'Não falo português, sou do Chile', pron: 'Se lee: "Naun falu portugués, sou du Shili"', es: 'No hablo portugués, soy de Chile' }
+      ],
+      compras: [
+        { pt: 'Quanto custa isso?', pron: 'Se lee: "Kuantu kusta isu"', es: '¿Cuánto cuesta esto?' },
+        { pt: 'Aceita PIX ou cartão de crédito?', pron: 'Se lee: "Aseita Piks ou kartaun de kréditu"', es: '¿Acepta PIX o tarjeta de crédito?' },
+        { pt: 'Quero uma água de coco gelada', pron: 'Se lee: "Keru uma agua de koku yelada"', es: 'Quiero un agua de coco helada' },
+        { pt: 'A conta, por favor', pron: 'Se lee: "A konta, por favor"', es: 'La cuenta, por favor' },
+        { pt: 'Tem desconto à vista?', pron: 'Se lee: "Tein deskontu a vista"', es: '¿Tiene descuento al contado?' }
+      ],
+      ayuda: [
+        { pt: 'Onde fica a praia?', pron: 'Se lee: "Ondi fika a praya"', es: '¿Dónde queda la playa?' },
+        { pt: 'Onde fica o banheiro?', pron: 'Se lee: "Ondi fika u bañeru"', es: '¿Dónde queda el baño?' },
+        { pt: 'Preciso de ajuda, por favor', pron: 'Se lee: "Presizu de ayúda, por favor"', es: 'Necesito ayuda, por favor' },
+        { pt: 'Estou perdido, procuro meu grupo', pron: 'Se lee: "Estóu peryídu, prokurú meu grupu"', es: 'Estoy perdido, busco a mi grupo' },
+        { pt: 'Qual é a senha do Wi-Fi?', pron: 'Se lee: "Kual é a seña du Uai-Fai"', es: '¿Cuál es la clave del Wi-Fi?' }
+      ]
+    };
+
+    function speakPortuguese(text) {
+      if (!('speechSynthesis' in window)) return;
+      window.speechSynthesis.cancel();
+      const utter = new SpeechSynthesisUtterance(text);
+      utter.lang = 'pt-BR';
+      utter.rate = 0.92;
+      window.speechSynthesis.speak(utter);
+    }
+
+    function renderPtCategory(cat, btnEl) {
+      if (btnEl) {
+        document.querySelectorAll('.pt-tab-btn').forEach(b => b.classList.remove('active'));
+        btnEl.classList.add('active');
+      }
+      const list = document.getElementById('ptPhrasesList');
+      list.innerHTML = '';
+      ptData[cat].forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'pt-phrase-card';
+        card.innerHTML = `
+          <div class="pt-phrase-info">
+            <div class="pt-word">${item.pt}</div>
+            <div class="pt-pron">${item.pron}</div>
+            <div class="pt-es">🇨🇱 ${item.es}</div>
+          </div>
+          <button type="button" class="pt-speak-btn" aria-label="Escuchar pronunciación">🔊 Oír</button>
+        `;
+        card.querySelector('.pt-speak-btn').addEventListener('click', () => speakPortuguese(item.pt));
+        list.appendChild(card);
+      });
+    }
+
+    renderPtCategory('saludos');
+
+    // ==========================================
+    // 4. CRONÓMETRO EN RETROCESO (15 DIC 2026 - 11:00 AM)
     // ==========================================
     const targetDate = new Date('2026-12-15T11:00:00-03:00').getTime();
 
@@ -1130,7 +1339,7 @@
     setInterval(updateCountdown, 1000);
 
     // ==========================================
-    // 4. CONTROL DE VENTANAS EMERGENTES (MODALES)
+    // 5. CONTROL DE VENTANAS EMERGENTES (MODALES)
     // ==========================================
     function openModal(modalId) {
       const modal = document.getElementById(modalId);
