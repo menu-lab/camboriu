@@ -1,1 +1,341 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Gira de Estudio Camboriú 2027 • IV° Medio A - Colegio Altazor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
 
+    html, body {
+      width: 100%;
+      height: 100dvh;
+      max-height: 100dvh;
+      overflow: hidden;
+      background-color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Fredoka', sans-serif;
+    }
+
+    /* Contenedor maestro estricto 900x1700 adaptado a 1 sola pantalla */
+    .canvas-wrapper {
+      position: relative;
+      height: 100dvh;
+      max-height: 100dvh;
+      aspect-ratio: 900 / 1700;
+      width: auto;
+      max-width: 100vw;
+      background-color: #ffffff;
+      background-image: url('fondo.jpg');
+      background-size: 100% 100%;
+      background-position: center center;
+      background-repeat: no-repeat;
+      overflow: hidden;
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.08);
+    }
+
+    /* Botón de Música Aleatoria (Parte superior derecha, bajo la rama) */
+    .music-btn {
+      position: absolute;
+      top: 12.2%;
+      right: 3.2%;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      gap: 0.45em;
+      padding: 0.55em 0.9em;
+      border: 3px solid #ffffff;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #009c3b 0%, #0077b6 100%);
+      color: #ffffff;
+      font-family: 'Fredoka', sans-serif;
+      font-size: clamp(11px, 1.85dvh, 22px);
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      box-shadow: 0 6px 14px rgba(0, 55, 95, 0.35), inset 0 2px 4px rgba(255, 255, 255, 0.4);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.3s ease;
+      animation: pulse-soft 2.4s infinite;
+    }
+
+    .music-btn:hover {
+      transform: scale(1.06);
+    }
+
+    .music-btn:active {
+      transform: scale(0.95);
+    }
+
+    .music-btn.playing {
+      background: linear-gradient(135deg, #ffdf00 0%, #f77f00 100%);
+      color: #102a43;
+      border-color: #102a43;
+      animation: none;
+    }
+
+    .music-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.5em;
+      height: 1.5em;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.25);
+      font-size: 1em;
+    }
+
+    .music-btn.playing .music-icon {
+      background: #102a43;
+      color: #ffdf00;
+      animation: spin-note 3s linear infinite;
+    }
+
+    @keyframes pulse-soft {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    @keyframes spin-note {
+      0% { transform: rotate(0deg); }
+      25% { transform: rotate(12deg); }
+      75% { transform: rotate(-12deg); }
+      100% { transform: rotate(0deg); }
+    }
+
+    /* Zona Media Reservada (Para la futura botonera de la Fase 2) */
+    .center-menu-zone {
+      position: absolute;
+      top: 26%;
+      left: 8%;
+      width: 84%;
+      height: 55%;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none; /* Se activará cuando agreguemos los botones */
+    }
+
+    /* Cronómetro en Retroceso sobre las olas inferiores */
+    .countdown-dock {
+      position: absolute;
+      bottom: 2.3%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      z-index: 20;
+      background: rgba(9, 36, 66, 0.88);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border: 3px solid #72efdd;
+      border-radius: 22px;
+      padding: 0.65em 0.9em;
+      box-shadow: 0 8px 20px rgba(0, 20, 45, 0.45);
+      text-align: center;
+      color: #ffffff;
+    }
+
+    .countdown-title {
+      font-size: clamp(12px, 1.85dvh, 22px);
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: #ffdf00;
+      text-transform: uppercase;
+      margin-bottom: 0.35em;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+    }
+
+    .countdown-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.45em;
+    }
+
+    .time-box {
+      background: linear-gradient(180deg, #132a46 0%, #071324 100%);
+      border: 2px solid rgba(114, 239, 221, 0.45);
+      border-radius: 12px;
+      padding: 0.35em 0.2em;
+      box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.7);
+    }
+
+    .time-value {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(16px, 2.7dvh, 34px);
+      font-weight: 900;
+      color: #ffffff;
+      line-height: 1.1;
+      text-shadow: 0 0 10px rgba(114, 239, 221, 0.65);
+    }
+
+    .time-label {
+      font-size: clamp(9px, 1.2dvh, 14px);
+      font-weight: 600;
+      color: #72efdd;
+      letter-spacing: 1px;
+      margin-top: 0.15em;
+    }
+
+    .flight-subtitle {
+      font-size: clamp(9px, 1.25dvh, 15px);
+      color: #e0fbfc;
+      margin-top: 0.4em;
+      letter-spacing: 0.6px;
+      opacity: 0.95;
+    }
+  </style>
+</head>
+<body>
+
+  <main class="canvas-wrapper">
+    <!-- Botón de Música Aleatoria -->
+    <button id="musicToggle" class="music-btn" type="button" aria-label="Reproducir música">
+      <span class="music-icon" id="musicIcon">▶</span>
+      <span id="musicText">🎵 MÚSICA</span>
+    </button>
+
+    <!-- Espacio Central Limpio para los Botones de la Fase 2 -->
+    <section class="center-menu-zone" id="menuButtonsContainer">
+      <!-- Aquí integraremos los botones centrales cuando me envíes la lista -->
+    </section>
+
+    <!-- Cronómetro hacia atrás sobre las olas -->
+    <footer class="countdown-dock">
+      <div class="countdown-title" id="countdownHeader">✈️ FALTAN PARA EL VUELO</div>
+      <div class="countdown-grid">
+        <div class="time-box">
+          <div class="time-value" id="days">000</div>
+          <div class="time-label">DÍAS</div>
+        </div>
+        <div class="time-box">
+          <div class="time-value" id="hours">00</div>
+          <div class="time-label">HRS</div>
+        </div>
+        <div class="time-box">
+          <div class="time-value" id="minutes">00</div>
+          <div class="time-label">MIN</div>
+        </div>
+        <div class="time-box">
+          <div class="time-value" id="seconds">00</div>
+          <div class="time-label">SEG</div>
+        </div>
+      </div>
+      <div class="flight-subtitle">15 DE DICIEMBRE 2026 • 11:00 AM</div>
+    </footer>
+
+    <!-- Reproductor oculto -->
+    <audio id="bgAudio" preload="auto"></audio>
+  </main>
+
+  <script>
+    // ==========================================
+    // 1. SISTEMA DE MÚSICA ALEATORIA (3 MP3)
+    // ==========================================
+    // Asegúrate de que tus archivos en la carpeta se llamen 1.mp3, 2.mp3 y 3.mp3
+    // (o cambia los nombres aquí abajo según como los subas)
+    const playlist = ['1.mp3', '2.mp3', '3.mp3'];
+
+    const audio = document.getElementById('bgAudio');
+    const musicBtn = document.getElementById('musicToggle');
+    const musicIcon = document.getElementById('musicIcon');
+    const musicText = document.getElementById('musicText');
+
+    let isPlaying = false;
+    let currentIndex = -1;
+
+    // Selecciona una pista aleatoria al cargar la página
+    function pickRandomTrack(excludeIndex = -1) {
+      if (playlist.length === 1) return 0;
+      let nextIndex;
+      do {
+        nextIndex = Math.floor(Math.random() * playlist.length);
+      } while (nextIndex === excludeIndex);
+      return nextIndex;
+    }
+
+    function loadInitialTrack() {
+      currentIndex = pickRandomTrack();
+      audio.src = playlist[currentIndex];
+    }
+
+    loadInitialTrack();
+
+    // Si termina una canción, pasa automáticamente a otra aleatoria
+    audio.addEventListener('ended', () => {
+      currentIndex = pickRandomTrack(currentIndex);
+      audio.src = playlist[currentIndex];
+      audio.play().catch(() => {});
+    });
+
+    musicBtn.addEventListener('click', () => {
+      if (!isPlaying) {
+        audio.play().then(() => {
+          isPlaying = true;
+          musicBtn.classList.add('playing');
+          musicIcon.textContent = '⏸';
+          musicText.textContent = '🎵 SONANDO';
+        }).catch((err) => {
+          console.warn('No se pudo reproducir el audio. Verifica que 1.mp3, 2.mp3 y 3.mp3 estén en la misma carpeta.', err);
+        });
+      } else {
+        audio.pause();
+        isPlaying = false;
+        musicBtn.classList.remove('playing');
+        musicIcon.textContent = '▶';
+        musicText.textContent = '🎵 MÚSICA';
+      }
+    });
+
+    // ==========================================
+    // 2. CRONÓMETRO EN RETROCESO (15 DIC 2026 - 11:00 AM)
+    // ==========================================
+    // Hora local de Chile (-03:00 en diciembre)
+    const targetDate = new Date('2026-12-15T11:00:00-03:00').getTime();
+
+    const daysEl = document.getElementById('days');
+    const hoursEl = document.getElementById('hours');
+    const minutesEl = document.getElementById('minutes');
+    const secondsEl = document.getElementById('seconds');
+    const headerEl = document.getElementById('countdownHeader');
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      if (distance <= 0) {
+        daysEl.textContent = '00';
+        hoursEl.textContent = '00';
+        minutesEl.textContent = '00';
+        secondsEl.textContent = '00';
+        headerEl.textContent = '🛫 ¡LLEGÓ EL DÍA DEL EMBARQUE!';
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      daysEl.textContent = String(days).padStart(2, '0');
+      hoursEl.textContent = String(hours).padStart(2, '0');
+      minutesEl.textContent = String(minutes).padStart(2, '0');
+      secondsEl.textContent = String(seconds).padStart(2, '0');
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
+</body>
+</html>
