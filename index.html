@@ -180,7 +180,7 @@
     }
 
     /* ==========================================
-       EFECTO 3: EASTER EGG INTERACTIVO EN POLAR
+       EFECTO 3: GLOBO DE CÓMIC AUTOMÁTICO + TÁCTIL DE POLAR
        ========================================== */
     .polar-hotspot {
       position: absolute;
@@ -195,22 +195,23 @@
 
     .polar-speech-bubble {
       position: absolute;
-      top: 19.5%;
-      left: 5%;
-      max-width: 58%;
+      top: 19.6%;
+      left: 4.5%;
+      max-width: 63%;
       z-index: 30;
       background: #ffffff;
       color: #102a43;
       border: 3px solid #102a43;
       border-radius: 18px;
-      padding: 0.5em 0.8em;
-      font-size: clamp(11px, 1.55dvh, 18px);
+      padding: 0.48em 0.82em;
+      font-size: clamp(11px, 1.52dvh, 17px);
       font-weight: 700;
-      box-shadow: 0 6px 0 #102a43, 0 10px 18px rgba(0, 0, 0, 0.22);
+      line-height: 1.25;
+      box-shadow: 0 5px 0 #102a43, 0 10px 18px rgba(0, 0, 0, 0.2);
       pointer-events: none;
       opacity: 0;
-      transform: translateY(8px) scale(0.9);
-      transition: opacity 0.22s ease, transform 0.22s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      transform: translateY(8px) scale(0.92);
+      transition: opacity 0.25s ease, transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
 
     .polar-speech-bubble::before {
@@ -285,7 +286,6 @@
       transform: scale(0.92);
     }
 
-    /* Botón compacto Portugués Básico */
     .pt-btn {
       background: linear-gradient(135deg, #ffdf00 0%, #009c3b 100%);
       color: #102a43;
@@ -310,7 +310,6 @@
       margin-top: 1px;
     }
 
-    /* Botón de Música Circular */
     .music-btn {
       background: linear-gradient(135deg, #009c3b 0%, #0077b6 100%);
       color: #ffffff;
@@ -832,9 +831,9 @@
       <span class="leaf-drift" style="top: 68%; left: 4%; animation-delay: 6.2s;">✨</span>
     </div>
 
-    <!-- EFECTO 3: Área táctil interactiva sobre Polar + Globo de cómic -->
+    <!-- EFECTO 3: Área táctil + Globo de cómic automático de Polar -->
     <div class="polar-hotspot" id="polarHotspot" role="button" tabindex="0" aria-label="Tocar a Polar"></div>
-    <div class="polar-speech-bubble" id="polarBubble">Polar está listo para Camboriú 😎</div>
+    <div class="polar-speech-bubble" id="polarBubble">Polar ya tiene la maleta lista 😎</div>
 
     <!-- Controles Compactos Superior Derecha (Portugués Básico + Música) -->
     <div class="top-right-tools">
@@ -1171,25 +1170,63 @@
     });
 
     // ==========================================
-    // 2. EASTER EGG INTERACTIVO AL TOCAR A POLAR
+    // 2. GLOBOS DE CÓMIC AUTOMÁTICOS Y ALEATORIOS (30 FRASES)
     // ==========================================
     const polarHotspot = document.getElementById('polarHotspot');
     const polarBubble = document.getElementById('polarBubble');
 
     const polarPhrases = [
-      'Polar está listo para la praia 😎',
-      'Polar ya empacó el bloqueador 🥥',
-      'Polar aprueba este IV° Medio A ✈️',
-      'Polar dice: no olviden el permiso notarial 📄',
-      'Polar activa modo vacaciones en Brasil 🌴',
-      'Polar dice: Obrigado, Camboriú 🇧🇷'
+      // Recordatorios de qué llevar
+      'Polar recuerda: lleva bloqueador solar FPS 50+ 🧴',
+      'Polar dice: no olvides tus lentes de sol y gorro 😎',
+      'Polar avisa: empaca traje de baño y toalla de playa 🏖️',
+      'Polar recuerda: lleva cargador portátil (power bank) 🔋',
+      'Polar dice: lleva sandalias cómodas para caminar en la arena 🩴',
+      'Polar avisa: guarda una muda de ropa en el bolso de mano 🎒',
+      'Polar recuerda: lleva botella reutilizable para hidratarte 💧',
+      'Polar dice: no olvides repelente para la tarde en Brasil 🦟',
+      'Polar avisa: lleva tu polerón del IV° Medio A para el avión 🧥',
+      'Polar recuerda: lleva tus remedios personales con receta 💊',
+
+      // Recordatorios de tarjeta PIX y documentos
+      'Polar recuerda: activa el uso internacional de tu tarjeta PIX 💳',
+      'Polar dice: guarda bien tu clave PIN de 4 dígitos 🔢',
+      'Polar avisa: en Brasil se paga diciendo "Crédito" 🇧🇷',
+      'Polar recuerda: revisa el permiso notarial con ambos padres 📄',
+      'Polar dice: lleva tu cédula de identidad vigente y en buen estado 🪪',
+      'Polar avisa: lleva un poco de reales en efectivo por si acaso 💵',
+      'Polar recuerda: descarga la app de tu tarjeta antes de volar 📲',
+
+      // Frases graciosas estilo Polar
+      'Polar ya entrenó para tomar agua de coco todo el día 🥥',
+      'Polar no comparte sus papas fritas en la playa 🍟',
+      'Polar habla portugués fluido: "Oi, tudo bem" 🐻‍❄️',
+      'Polar dice: el que se queda dormido pierde el desayuno ⏰',
+      'Polar recomienda practicar baile antes de las fiestas 🕺',
+      'Polar está listo para el tobogán más alto de Camboriú 🌊',
+      'Polar asegura que este viaje será legendario 📸',
+
+      // Frases de entusiasmo por el viaje
+      '¡IV° Medio A Colegio Altazor rumbo a Camboriú! ✈️',
+      '¡Falta cada vez menos para pisar la playa de Brasil! 🌴',
+      '¡Generación 2027, prepárense para la mejor gira! 🎉',
+      '¡Modo vacaciones activado al 100% en Santa Catarina! ☀️',
+      '¡Dale play a la música y entra en modo Brasil! 🎵',
+      '¡La cuenta regresiva no para, nos vamos a Camboriú! 🚀'
     ];
 
     const burstIcons = ['🥥', '🌴', '😎', '☀️', '✈️', '🇧🇷', '🏖️'];
     let lastPhraseIdx = -1;
-    let bubbleTimeout = null;
+    let bubbleHideTimeout = null;
+    let autoCycleInterval = null;
 
-    function triggerPolarFun() {
+    function isAnyModalOpen() {
+      return document.querySelector('.modal-overlay.active') !== null;
+    }
+
+    function showRandomPolarPhrase(withBurst = false) {
+      if (isAnyModalOpen()) return;
+
       let idx;
       do {
         idx = Math.floor(Math.random() * polarPhrases.length);
@@ -1199,43 +1236,54 @@
       polarBubble.textContent = polarPhrases[idx];
       polarBubble.classList.add('visible');
 
-      clearTimeout(bubbleTimeout);
-      bubbleTimeout = setTimeout(() => {
+      clearTimeout(bubbleHideTimeout);
+      bubbleHideTimeout = setTimeout(() => {
         polarBubble.classList.remove('visible');
-      }, 3200);
+      }, 4200);
 
-      const rect = polarHotspot.getBoundingClientRect();
-      const canvasRect = mainCanvas.getBoundingClientRect();
-      const originX = rect.left - canvasRect.left + rect.width * 0.55;
-      const originY = rect.top - canvasRect.top + rect.height * 0.45;
+      if (withBurst) {
+        const rect = polarHotspot.getBoundingClientRect();
+        const canvasRect = mainCanvas.getBoundingClientRect();
+        const originX = rect.left - canvasRect.left + rect.width * 0.55;
+        const originY = rect.top - canvasRect.top + rect.height * 0.45;
 
-      for (let i = 0; i < 6; i++) {
-        const span = document.createElement('span');
-        span.className = 'burst-emoji';
-        span.textContent = burstIcons[Math.floor(Math.random() * burstIcons.length)];
-        span.style.left = originX + 'px';
-        span.style.top = originY + 'px';
+        for (let i = 0; i < 6; i++) {
+          const span = document.createElement('span');
+          span.className = 'burst-emoji';
+          span.textContent = burstIcons[Math.floor(Math.random() * burstIcons.length)];
+          span.style.left = originX + 'px';
+          span.style.top = originY + 'px';
 
-        const angle = (Math.random() * Math.PI * 1.4) - 0.3;
-        const dist = 55 + Math.random() * 85;
-        const tx = Math.cos(angle) * dist;
-        const ty = Math.sin(angle) * dist - 20;
-        const rot = (Math.random() * 160 - 80) + 'deg';
+          const angle = (Math.random() * Math.PI * 1.4) - 0.3;
+          const dist = 55 + Math.random() * 85;
+          const tx = Math.cos(angle) * dist;
+          const ty = Math.sin(angle) * dist - 20;
+          const rot = (Math.random() * 160 - 80) + 'deg';
 
-        span.style.setProperty('--tx', tx + 'px');
-        span.style.setProperty('--ty', ty + 'px');
-        span.style.setProperty('--rot', rot);
+          span.style.setProperty('--tx', tx + 'px');
+          span.style.setProperty('--ty', ty + 'px');
+          span.style.setProperty('--rot', rot);
 
-        mainCanvas.appendChild(span);
-        setTimeout(() => span.remove(), 1200);
+          mainCanvas.appendChild(span);
+          setTimeout(() => span.remove(), 1200);
+        }
       }
     }
 
-    polarHotspot.addEventListener('click', triggerPolarFun);
+    // Inicio automático de frases de Polar cada 6.5 segundos
+    setTimeout(() => {
+      showRandomPolarPhrase(false);
+      autoCycleInterval = setInterval(() => {
+        showRandomPolarPhrase(false);
+      }, 6500);
+    }, 1500);
+
+    // También responde al tocar directamente al oso con lluvia de íconos
+    polarHotspot.addEventListener('click', () => showRandomPolarPhrase(true));
     polarHotspot.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
-        triggerPolarFun();
+        showRandomPolarPhrase(true);
       }
     });
 
@@ -1342,6 +1390,7 @@
     // 5. CONTROL DE VENTANAS EMERGENTES (MODALES)
     // ==========================================
     function openModal(modalId) {
+      polarBubble.classList.remove('visible');
       const modal = document.getElementById(modalId);
       if (modal) modal.classList.add('active');
     }
