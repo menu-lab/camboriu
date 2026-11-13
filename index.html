@@ -45,36 +45,33 @@
       box-shadow: 0 0 25px rgba(0, 0, 0, 0.08);
     }
 
-    /* Botón de Música Aleatoria (Parte superior derecha, bajo la rama) */
+    /* Botón de Música Circular y Compacto (Debajo de la rama y sin tapar ningún título) */
     .music-btn {
       position: absolute;
-      top: 12.2%;
-      right: 3.2%;
-      z-index: 20;
-      display: flex;
-      align-items: center;
-      gap: 0.45em;
-      padding: 0.55em 0.9em;
-      border: 3px solid #ffffff;
-      border-radius: 999px;
+      top: 15.2%;
+      right: 4.5%;
+      z-index: 25;
+      width: clamp(34px, 4.4dvh, 52px);
+      height: clamp(34px, 4.4dvh, 52px);
+      border: 2.5px solid #ffffff;
+      border-radius: 50%;
       background: linear-gradient(135deg, #009c3b 0%, #0077b6 100%);
       color: #ffffff;
-      font-family: 'Fredoka', sans-serif;
-      font-size: clamp(11px, 1.85dvh, 22px);
-      font-weight: 700;
-      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       cursor: pointer;
-      box-shadow: 0 6px 14px rgba(0, 55, 95, 0.35), inset 0 2px 4px rgba(255, 255, 255, 0.4);
-      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0, 55, 95, 0.35), inset 0 2px 4px rgba(255, 255, 255, 0.45);
+      transition: transform 0.2s ease, background 0.3s ease, box-shadow 0.2s ease;
       animation: pulse-soft 2.4s infinite;
     }
 
     .music-btn:hover {
-      transform: scale(1.06);
+      transform: scale(1.08);
     }
 
     .music-btn:active {
-      transform: scale(0.95);
+      transform: scale(0.92);
     }
 
     .music-btn.playing {
@@ -84,48 +81,41 @@
       animation: none;
     }
 
-    .music-icon {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 1.5em;
-      height: 1.5em;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.25);
-      font-size: 1em;
+    .music-btn svg {
+      width: 54%;
+      height: 54%;
+      fill: currentColor;
+      display: block;
     }
 
-    .music-btn.playing .music-icon {
-      background: #102a43;
-      color: #ffdf00;
-      animation: spin-note 3s linear infinite;
+    .music-btn.playing svg {
+      animation: note-bounce 1.2s ease-in-out infinite;
     }
 
     @keyframes pulse-soft {
       0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
+      50% { transform: scale(1.06); }
     }
 
-    @keyframes spin-note {
-      0% { transform: rotate(0deg); }
-      25% { transform: rotate(12deg); }
-      75% { transform: rotate(-12deg); }
-      100% { transform: rotate(0deg); }
+    @keyframes note-bounce {
+      0%, 100% { transform: rotate(0deg) scale(1); }
+      30% { transform: rotate(-12deg) scale(1.1); }
+      70% { transform: rotate(12deg) scale(1.1); }
     }
 
     /* Zona Media Reservada (Para la futura botonera de la Fase 2) */
     .center-menu-zone {
       position: absolute;
-      top: 26%;
+      top: 25%;
       left: 8%;
       width: 84%;
-      height: 55%;
+      height: 56%;
       z-index: 10;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      pointer-events: none; /* Se activará cuando agreguemos los botones */
+      pointer-events: none;
     }
 
     /* Cronómetro en Retroceso sobre las olas inferiores */
@@ -200,10 +190,16 @@
 <body>
 
   <main class="canvas-wrapper">
-    <!-- Botón de Música Aleatoria -->
-    <button id="musicToggle" class="music-btn" type="button" aria-label="Reproducir música">
-      <span class="music-icon" id="musicIcon">▶</span>
-      <span id="musicText">🎵 MÚSICA</span>
+    <!-- Botón de Música Circular Compacto (Sin tapar el título) -->
+    <button id="musicToggle" class="music-btn" type="button" aria-label="Reproducir música" title="Música Brasil">
+      <!-- Icono Play + Nota Musical -->
+      <svg id="iconPlay" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+      </svg>
+      <!-- Icono Pausa (oculto al inicio) -->
+      <svg id="iconPause" viewBox="0 0 24 24" aria-hidden="true" style="display: none;">
+        <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+      </svg>
     </button>
 
     <!-- Espacio Central Limpio para los Botones de la Fase 2 -->
@@ -243,19 +239,16 @@
     // ==========================================
     // 1. SISTEMA DE MÚSICA ALEATORIA (3 MP3)
     // ==========================================
-    // Asegúrate de que tus archivos en la carpeta se llamen 1.mp3, 2.mp3 y 3.mp3
-    // (o cambia los nombres aquí abajo según como los subas)
     const playlist = ['1.mp3', '2.mp3', '3.mp3'];
 
     const audio = document.getElementById('bgAudio');
     const musicBtn = document.getElementById('musicToggle');
-    const musicIcon = document.getElementById('musicIcon');
-    const musicText = document.getElementById('musicText');
+    const iconPlay = document.getElementById('iconPlay');
+    const iconPause = document.getElementById('iconPause');
 
     let isPlaying = false;
     let currentIndex = -1;
 
-    // Selecciona una pista aleatoria al cargar la página
     function pickRandomTrack(excludeIndex = -1) {
       if (playlist.length === 1) return 0;
       let nextIndex;
@@ -272,7 +265,6 @@
 
     loadInitialTrack();
 
-    // Si termina una canción, pasa automáticamente a otra aleatoria
     audio.addEventListener('ended', () => {
       currentIndex = pickRandomTrack(currentIndex);
       audio.src = playlist[currentIndex];
@@ -284,8 +276,8 @@
         audio.play().then(() => {
           isPlaying = true;
           musicBtn.classList.add('playing');
-          musicIcon.textContent = '⏸';
-          musicText.textContent = '🎵 SONANDO';
+          iconPlay.style.display = 'none';
+          iconPause.style.display = 'block';
         }).catch((err) => {
           console.warn('No se pudo reproducir el audio. Verifica que 1.mp3, 2.mp3 y 3.mp3 estén en la misma carpeta.', err);
         });
@@ -293,15 +285,14 @@
         audio.pause();
         isPlaying = false;
         musicBtn.classList.remove('playing');
-        musicIcon.textContent = '▶';
-        musicText.textContent = '🎵 MÚSICA';
+        iconPlay.style.display = 'block';
+        iconPause.style.display = 'none';
       }
     });
 
     // ==========================================
     // 2. CRONÓMETRO EN RETROCESO (15 DIC 2026 - 11:00 AM)
     // ==========================================
-    // Hora local de Chile (-03:00 en diciembre)
     const targetDate = new Date('2026-12-15T11:00:00-03:00').getTime();
 
     const daysEl = document.getElementById('days');
