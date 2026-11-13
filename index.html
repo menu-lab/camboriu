@@ -300,4 +300,853 @@
 
     @keyframes pulse-soft {
       0%, 100% { transform: scale(1); }
-      50% { transform:
+      50% { transform: scale(1.06); }
+    }
+
+    @keyframes note-bounce {
+      0%, 100% { transform: rotate(0deg) scale(1); }
+      30% { transform: rotate(-12deg) scale(1.1); }
+      70% { transform: rotate(12deg) scale(1.1); }
+    }
+
+    /* ==========================================
+       ZONA MEDIA: BOTONERA INTERACTIVA (3 BOTONES)
+       ========================================== */
+    .center-menu-zone {
+      position: absolute;
+      top: 26%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 82%;
+      height: 51%;
+      z-index: 15;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(14px, 2.3dvh, 26px);
+    }
+
+    .menu-card-btn {
+      position: relative;
+      width: 100%;
+      padding: clamp(12px, 1.8dvh, 22px) clamp(16px, 2.2dvh, 28px);
+      border-radius: 22px;
+      border: 3.5px solid #102a43;
+      display: flex;
+      align-items: center;
+      gap: clamp(10px, 1.5dvh, 18px);
+      cursor: pointer;
+      text-align: left;
+      box-shadow: 0 7px 0 #102a43, 0 12px 20px rgba(16, 42, 67, 0.22);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .menu-card-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .menu-card-btn:active {
+      transform: translateY(4px);
+      box-shadow: 0 3px 0 #102a43, 0 6px 12px rgba(16, 42, 67, 0.2);
+    }
+
+    .btn-raitrai {
+      background: linear-gradient(135deg, #009c3b 0%, #0077b6 100%);
+      color: #ffffff;
+    }
+
+    .btn-notaria {
+      background: linear-gradient(135deg, #ffdf00 0%, #ffb703 100%);
+      color: #102a43;
+    }
+
+    .btn-pix {
+      background: linear-gradient(135deg, #00b4d8 0%, #0077b6 100%);
+      color: #ffffff;
+    }
+
+    .btn-badge-icon {
+      flex-shrink: 0;
+      width: clamp(40px, 5.4dvh, 62px);
+      height: clamp(40px, 5.4dvh, 62px);
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.94);
+      border: 2.5px solid #102a43;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: clamp(20px, 2.8dvh, 34px);
+      box-shadow: 0 3px 0 rgba(16, 42, 67, 0.25);
+    }
+
+    .btn-text-group {
+      flex: 1;
+      padding-right: 1.4em;
+    }
+
+    .btn-title {
+      font-size: clamp(14px, 2.05dvh, 25px);
+      font-weight: 700;
+      line-height: 1.15;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+
+    .btn-subtitle {
+      font-size: clamp(10px, 1.35dvh, 16px);
+      font-weight: 600;
+      opacity: 0.92;
+      margin-top: 0.2em;
+    }
+
+    .pointer-hand {
+      position: absolute;
+      right: 12px;
+      bottom: -10px;
+      width: clamp(28px, 3.8dvh, 44px);
+      height: clamp(28px, 3.8dvh, 44px);
+      filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.35));
+      animation: tap-hand 1.6s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes tap-hand {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(-3px, -4px) scale(1.1); }
+    }
+
+    /* ==========================================
+       CRONÓMETRO EN RETROCESO SOBRE LAS OLAS
+       ========================================== */
+    .countdown-dock {
+      position: absolute;
+      bottom: 2.3%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      z-index: 20;
+      background: rgba(9, 36, 66, 0.9);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border: 3px solid #72efdd;
+      border-radius: 22px;
+      padding: 0.65em 0.9em;
+      box-shadow: 0 8px 20px rgba(0, 20, 45, 0.45);
+      text-align: center;
+      color: #ffffff;
+    }
+
+    .countdown-title {
+      font-size: clamp(12px, 1.85dvh, 22px);
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: #ffdf00;
+      text-transform: uppercase;
+      margin-bottom: 0.35em;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+    }
+
+    .countdown-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.45em;
+    }
+
+    .time-box {
+      background: linear-gradient(180deg, #132a46 0%, #071324 100%);
+      border: 2px solid rgba(114, 239, 221, 0.45);
+      border-radius: 12px;
+      padding: 0.35em 0.2em;
+      box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.7);
+    }
+
+    .time-value {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(16px, 2.7dvh, 34px);
+      font-weight: 900;
+      color: #ffffff;
+      line-height: 1.1;
+      text-shadow: 0 0 10px rgba(114, 239, 221, 0.65);
+    }
+
+    .time-label {
+      font-size: clamp(9px, 1.2dvh, 14px);
+      font-weight: 600;
+      color: #72efdd;
+      letter-spacing: 1px;
+      margin-top: 0.15em;
+    }
+
+    .flight-subtitle {
+      font-size: clamp(9px, 1.25dvh, 15px);
+      color: #e0fbfc;
+      margin-top: 0.4em;
+      letter-spacing: 0.6px;
+      opacity: 0.95;
+    }
+
+    /* ==========================================
+       VENTANAS EMERGENTES (MODALES)
+       ========================================== */
+    .modal-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 50;
+      background: rgba(9, 36, 66, 0.78);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 5%;
+      animation: fade-in 0.22s ease;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    @keyframes fade-in {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .modal-card {
+      position: relative;
+      width: 100%;
+      max-height: 86%;
+      background: #ffffff;
+      border: 4px solid #102a43;
+      border-radius: 24px;
+      box-shadow: 0 14px 35px rgba(0, 0, 0, 0.45);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      animation: pop-up 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    @keyframes pop-up {
+      from { transform: scale(0.88); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .modal-header {
+      padding: 0.9em 1.1em;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5em;
+      border-bottom: 3px solid #102a43;
+    }
+
+    .modal-header.raitrai-head {
+      background: linear-gradient(135deg, #009c3b 0%, #0077b6 100%);
+      color: #ffffff;
+    }
+
+    .modal-header.notaria-head {
+      background: linear-gradient(135deg, #ffdf00 0%, #ffb703 100%);
+      color: #102a43;
+    }
+
+    .modal-header.pix-head {
+      background: linear-gradient(135deg, #00b4d8 0%, #03045e 100%);
+      color: #ffffff;
+    }
+
+    .modal-title {
+      font-size: clamp(15px, 2.1dvh, 24px);
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .close-modal-btn {
+      flex-shrink: 0;
+      width: clamp(32px, 4dvh, 44px);
+      height: clamp(32px, 4dvh, 44px);
+      border-radius: 50%;
+      border: 2.5px solid #102a43;
+      background: #ffffff;
+      color: #102a43;
+      font-family: 'Fredoka', sans-serif;
+      font-size: clamp(16px, 2.2dvh, 24px);
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 3px 0 #102a43;
+    }
+
+    .close-modal-btn:active {
+      transform: translateY(2px);
+      box-shadow: 0 1px 0 #102a43;
+    }
+
+    .modal-body {
+      padding: 1em 1.15em;
+      overflow-y: auto;
+      color: #102a43;
+      font-size: clamp(12px, 1.65dvh, 18px);
+      line-height: 1.45;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75em;
+      user-select: text;
+    }
+
+    .info-pill {
+      background: #f0f9ff;
+      border-left: 5px solid #0077b6;
+      padding: 0.65em 0.85em;
+      border-radius: 10px;
+    }
+
+    .info-pill.warn {
+      background: #fffbeb;
+      border-left-color: #d97706;
+    }
+
+    .info-pill.alert {
+      background: #fef2f2;
+      border-left-color: #dc2626;
+    }
+
+    .info-pill.success {
+      background: #ecfdf5;
+      border-left-color: #059669;
+    }
+
+    .info-pill strong {
+      display: block;
+      font-size: 1.03em;
+      margin-bottom: 0.15em;
+      color: #0b2545;
+    }
+
+    .action-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.55em;
+      margin-top: 0.25em;
+    }
+
+    .modal-cta-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      width: 100%;
+      padding: 0.75em 1em;
+      border-radius: 14px;
+      border: 3px solid #102a43;
+      font-family: 'Fredoka', sans-serif;
+      font-size: clamp(13px, 1.75dvh, 19px);
+      font-weight: 700;
+      text-decoration: none;
+      text-align: center;
+      box-shadow: 0 4px 0 #102a43;
+      transition: transform 0.15s ease;
+    }
+
+    .modal-cta-btn:active {
+      transform: translateY(3px);
+      box-shadow: 0 1px 0 #102a43;
+    }
+
+    .cta-maps {
+      background: #ef233c;
+      color: #ffffff;
+    }
+
+    .cta-web {
+      background: #009c3b;
+      color: #ffffff;
+    }
+
+    .cta-whatsapp {
+      background: #25d366;
+      color: #102a43;
+    }
+
+    .croquis-card {
+      border: 2.5px solid #102a43;
+      border-radius: 14px;
+      background: #f8fafc;
+      padding: 0.7em;
+      text-align: center;
+    }
+
+    .croquis-title {
+      font-weight: 700;
+      font-size: 0.92em;
+      color: #9b1c1c;
+      margin-bottom: 0.4em;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+
+  <main class="canvas-wrapper" id="mainCanvas">
+    <!-- EFECTO 1: Destello en lentes y burbujas del coco de Polar -->
+    <div class="polar-sunglasses-glint" aria-hidden="true"></div>
+    <div class="coco-bubbles-layer" aria-hidden="true">
+      <span class="coco-bubble"></span>
+      <span class="coco-bubble"></span>
+      <span class="coco-bubble"></span>
+      <span class="coco-note">♪</span>
+      <span class="coco-note n2">♫</span>
+    </div>
+
+    <!-- EFECTO 2: Partículas de brisa tropical y destellos laterales -->
+    <div class="ambient-particles" aria-hidden="true">
+      <span class="sun-sparkle" style="top: 19%; left: 48%; animation-delay: 0.3s;"></span>
+      <span class="sun-sparkle" style="top: 23%; right: 12%; animation-delay: 1.8s;"></span>
+      <span class="sun-sparkle" style="top: 76%; left: 10%; animation-delay: 2.7s;"></span>
+      <span class="sun-sparkle" style="top: 78%; right: 14%; animation-delay: 1.1s;"></span>
+      <span class="leaf-drift" style="top: 22%; left: 3%; animation-delay: 0s;">🌿</span>
+      <span class="leaf-drift" style="top: 52%; right: 3%; animation-delay: 3.5s;">🍃</span>
+      <span class="leaf-drift" style="top: 68%; left: 4%; animation-delay: 6.2s;">✨</span>
+    </div>
+
+    <!-- EFECTO 3: Área táctil interactiva sobre Polar + Globo de cómic -->
+    <div class="polar-hotspot" id="polarHotspot" role="button" tabindex="0" aria-label="Tocar a Polar"></div>
+    <div class="polar-speech-bubble" id="polarBubble">Polar está listo para Camboriú 😎</div>
+
+    <!-- Botón de Música Circular Compacto -->
+    <button id="musicToggle" class="music-btn" type="button" aria-label="Reproducir música" title="Música Brasil">
+      <svg id="iconPlay" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+      </svg>
+      <svg id="iconPause" viewBox="0 0 24 24" aria-hidden="true" style="display: none;">
+        <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+      </svg>
+    </button>
+
+    <!-- ==========================================
+         BOTONERA CENTRAL (3 BOTONES)
+         ========================================== -->
+    <section class="center-menu-zone" aria-label="Menú principal de información">
+      
+      <!-- BOTÓN 1: TURISMO RAI TRAI -->
+      <button type="button" class="menu-card-btn btn-raitrai" onclick="openModal('modalRaitrai')">
+        <div class="btn-badge-icon">🚌</div>
+        <div class="btn-text-group">
+          <div class="btn-title">Agencia Rai Trai</div>
+          <div class="btn-subtitle">Empresa oficial • Contacto y respaldo</div>
+        </div>
+        <svg class="pointer-hand" viewBox="0 0 32 32" aria-hidden="true">
+          <path fill="#ffffff" stroke="#102a43" stroke-width="2.2" stroke-linejoin="round" d="M13 3a2.5 2.5 0 0 1 2.5 2.5V14h1.2a2.2 2.2 0 0 1 2.2 2.2v.5h1a2.2 2.2 0 0 1 2.2 2.2v.6h.8a2.2 2.2 0 0 1 2.2 2.2v3.3c0 3.3-2.7 6-6 6h-5.3c-2.3 0-4.4-1.3-5.4-3.3l-2.6-5.1a2.1 2.1 0 0 1 1-2.8 2.1 2.1 0 0 1 2.7.8l1.2 2V5.5A2.5 2.5 0 0 1 13 3z"/>
+        </svg>
+      </button>
+
+      <!-- BOTÓN 2: PERMISO NOTARIAL -->
+      <button type="button" class="menu-card-btn btn-notaria" onclick="openModal('modalNotaria')">
+        <div class="btn-badge-icon">📄</div>
+        <div class="btn-text-group">
+          <div class="btn-title">Permiso Notarial</div>
+          <div class="btn-subtitle">Trámite de viaje, horarios y ubicación</div>
+        </div>
+        <svg class="pointer-hand" viewBox="0 0 32 32" aria-hidden="true">
+          <path fill="#ffffff" stroke="#102a43" stroke-width="2.2" stroke-linejoin="round" d="M13 3a2.5 2.5 0 0 1 2.5 2.5V14h1.2a2.2 2.2 0 0 1 2.2 2.2v.5h1a2.2 2.2 0 0 1 2.2 2.2v.6h.8a2.2 2.2 0 0 1 2.2 2.2v3.3c0 3.3-2.7 6-6 6h-5.3c-2.3 0-4.4-1.3-5.4-3.3l-2.6-5.1a2.1 2.1 0 0 1 1-2.8 2.1 2.1 0 0 1 2.7.8l1.2 2V5.5A2.5 2.5 0 0 1 13 3z"/>
+        </svg>
+      </button>
+
+      <!-- BOTÓN 3: TARJETA & PAGOS PIX BRASIL -->
+      <button type="button" class="menu-card-btn btn-pix" onclick="openModal('modalPix')">
+        <div class="btn-badge-icon">💳</div>
+        <div class="btn-text-group">
+          <div class="btn-title">Tarjeta & Pagos PIX</div>
+          <div class="btn-subtitle">Cómo sacarla en Chile y pagar en Brasil</div>
+        </div>
+        <svg class="pointer-hand" viewBox="0 0 32 32" aria-hidden="true">
+          <path fill="#ffffff" stroke="#102a43" stroke-width="2.2" stroke-linejoin="round" d="M13 3a2.5 2.5 0 0 1 2.5 2.5V14h1.2a2.2 2.2 0 0 1 2.2 2.2v.5h1a2.2 2.2 0 0 1 2.2 2.2v.6h.8a2.2 2.2 0 0 1 2.2 2.2v3.3c0 3.3-2.7 6-6 6h-5.3c-2.3 0-4.4-1.3-5.4-3.3l-2.6-5.1a2.1 2.1 0 0 1 1-2.8 2.1 2.1 0 0 1 2.7.8l1.2 2V5.5A2.5 2.5 0 0 1 13 3z"/>
+        </svg>
+      </button>
+
+    </section>
+
+    <!-- Cronómetro hacia atrás sobre las olas -->
+    <footer class="countdown-dock">
+      <div class="countdown-title" id="countdownHeader">✈️ FALTAN PARA EL VUELO</div>
+      <div class="countdown-grid">
+        <div class="time-box">
+          <div class="time-value" id="days">000</div>
+          <div class="time-label">DÍAS</div>
+        </div>
+        <div class="time-box">
+          <div class="time-value" id="hours">00</div>
+          <div class="time-label">HRS</div>
+        </div>
+        <div class="time-box">
+          <div class="time-value" id="minutes">00</div>
+          <div class="time-label">MIN</div>
+        </div>
+        <div class="time-box">
+          <div class="time-value" id="seconds">00</div>
+          <div class="time-label">SEG</div>
+        </div>
+      </div>
+      <div class="flight-subtitle">15 DE DICIEMBRE 2026 • 11:00 AM</div>
+    </footer>
+
+    <!-- ==========================================
+         VENTANA EMERGENTE 1: TURISMO RAI TRAI
+         ========================================== -->
+    <div id="modalRaitrai" class="modal-overlay" onclick="closeOnBackdrop(event, 'modalRaitrai')">
+      <div class="modal-card">
+        <div class="modal-header raitrai-head">
+          <div class="modal-title">🚌 Turismo Rai Trai • Viajes de Estudio</div>
+          <button type="button" class="close-modal-btn" onclick="closeModal('modalRaitrai')" aria-label="Cerrar">✕</button>
+        </div>
+        <div class="modal-body">
+          <div class="info-pill">
+            <strong>¿Quiénes nos llevan?</strong>
+            Empresa 100% chilena especializada en giras de estudio con <b>más de 35 años de trayectoria</b>, más de 3.000 cursos atendidos y acompañamiento operativo antes, durante y después del viaje.
+          </div>
+
+          <div class="info-pill warn">
+            <strong>Programa Camboriú & Santa Catarina</strong>
+            Incluye transporte, alojamiento, alimentación, coordinación permanente en destino, playas, parques temáticos/acuáticos y fiestas estudiantiles organizadas.
+          </div>
+
+          <div class="info-pill">
+            <strong>Oficina Central & Contacto Oficial</strong>
+            📍 <b>Dirección:</b> La Concepción #141, Oficina 305, Providencia, Santiago.<br>
+            ☎️ <b>Teléfono fijo:</b> (+56 2) 2236 3232<br>
+            ✉️ <b>Correo:</b> raitrai@raitrai.cl
+          </div>
+
+          <div class="action-links">
+            <a href="https://www.raitrai.cl/camboru-y-florianopolis" target="_blank" rel="noopener noreferrer" class="modal-cta-btn cta-web">
+              🌐 Ver Programa Camboriú en RaiTrai.cl
+            </a>
+            <a href="https://wa.me/56998183857" target="_blank" rel="noopener noreferrer" class="modal-cta-btn cta-whatsapp">
+              💬 WhatsApp Oficial Rai Trai (+56 9 9818 3857)
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==========================================
+         VENTANA EMERGENTE 2: PERMISO NOTARIAL
+         ========================================== -->
+    <div id="modalNotaria" class="modal-overlay" onclick="closeOnBackdrop(event, 'modalNotaria')">
+      <div class="modal-card">
+        <div class="modal-header notaria-head">
+          <div class="modal-title">📄 Trámite Permiso Notarial de Viaje</div>
+          <button type="button" class="close-modal-btn" onclick="closeModal('modalNotaria')" aria-label="Cerrar">✕</button>
+        </div>
+        <div class="modal-body">
+          <div class="info-pill">
+            <strong>1) Lugar del Trámite</strong>
+            <b>Primera Notaría N° 1 de Puente Alto</b><br>
+            📍 Dirección: <b>Manuel Rodríguez 053, Local 115</b> (Galería Oasis, al costado de Plaza de Armas de Puente Alto).<br>
+            ☎️ Teléfono Notaría: 22 266 0966
+          </div>
+
+          <div class="info-pill warn">
+            <strong>2) Ejecutiva Asignada (Exclusivo)</strong>
+            Atenderse únicamente con nuestra ejecutiva asignada: <b>Andrea Blanco — Módulo 3</b>.
+          </div>
+
+          <div class="info-pill">
+            <strong>3) Horarios de Atención</strong>
+            • <b>Lunes a Viernes:</b> 09:00 a 13:00 hrs y de 14:00 a 16:30 hrs.<br>
+            • <b>Turno Especial Sábado 14 de Noviembre:</b> 09:00 a 13:00 hrs.
+          </div>
+
+          <div class="info-pill alert">
+            <strong>4) Requisitos Obligatorios y Entrega</strong>
+            • El poder notarial debe realizarse <b>SÍ O SÍ por ambos padres de forma presencial</b> (con cédulas de identidad vigentes).<br>
+            • Al firmar, por cada alumno entregan <b>3 documentos originales</b> incluida la firma digital.<br>
+            • <i>Revisar cuidadosamente que todos los nombres y RUT estén bien escritos antes de firmar.</i>
+          </div>
+
+          <div class="croquis-card">
+            <div class="croquis-title">🗺️ Referencia rápida: Costado Plaza Puente Alto</div>
+            <svg viewBox="0 0 320 135" style="width:100%; height:auto; border-radius:8px; background:#fff; border:1px solid #cbd5e1;">
+              <rect x="45" y="0" width="22" height="135" fill="#e2e8f0"/>
+              <rect x="253" y="0" width="22" height="135" fill="#e2e8f0"/>
+              <rect x="0" y="68" width="320" height="20" fill="#e2e8f0"/>
+              <rect x="75" y="8" width="170" height="52" rx="8" fill="#dcfce7" stroke="#15803d" stroke-width="2"/>
+              <text x="160" y="32" text-anchor="middle" font-family="Fredoka, sans-serif" font-size="13" font-weight="700" fill="#14532d">PLAZA PUENTE ALTO</text>
+              <text x="160" y="48" text-anchor="middle" font-family="Fredoka, sans-serif" font-size="10" fill="#166534">🚇 Metro Plaza Puente Alto</text>
+              <text x="160" y="81" text-anchor="middle" font-family="Fredoka, sans-serif" font-size="10" font-weight="700" fill="#334155">Calle Manuel Rodríguez</text>
+              <rect x="85" y="94" width="150" height="35" rx="6" fill="#102a43"/>
+              <text x="160" y="109" text-anchor="middle" font-family="Fredoka, sans-serif" font-size="11" font-weight="700" fill="#ffdf00">GALERÍA OASIS • LOCAL 115</text>
+              <text x="160" y="122" text-anchor="middle" font-family="Fredoka, sans-serif" font-size="9" fill="#ffffff">Manuel Rodríguez 053 (Módulo 3)</text>
+              <text x="56" y="45" text-anchor="middle" font-family="Fredoka, sans-serif" font-size="8" fill="#475569" transform="rotate(-90 56 45)">Concha y Toro</text>
+              <text x="264" y="45" text-anchor="middle" font-family="Fredoka, sans-serif" font-size="8" fill="#475569" transform="rotate(-90 264 45)">Balmaceda</text>
+            </svg>
+          </div>
+
+          <div class="action-links">
+            <a href="https://www.google.com/maps/search/?api=1&query=Manuel+Rodriguez+053+Puente+Alto+Chile" target="_blank" rel="noopener noreferrer" class="modal-cta-btn cta-maps">
+              📍 Abrir Ubicación Exacta en Google Maps
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==========================================
+         VENTANA EMERGENTE 3: TARJETA & PAGOS PIX BRASIL
+         ========================================== -->
+    <div id="modalPix" class="modal-overlay" onclick="closeOnBackdrop(event, 'modalPix')">
+      <div class="modal-card">
+        <div class="modal-header pix-head">
+          <div class="modal-title">💳 Tarjeta Prepago & Pagos PIX en Brasil</div>
+          <button type="button" class="close-modal-btn" onclick="closeModal('modalPix')" aria-label="Cerrar">✕</button>
+        </div>
+        <div class="modal-body">
+          <div class="info-pill">
+            <strong>1) ¿Qué es PIX y por qué conviene llevarlo?</strong>
+            <b>PIX</b> es el sistema oficial de pago instantáneo con código QR de Brasil. Se acepta en <b>todos lados</b> (playa, kioscos, malls, Uber, restaurantes y parques), evita andar con mucho efectivo y ofrece un tipo de cambio directo desde pesos chilenos (CLP) a reales (BRL) sin comisión internacional.
+          </div>
+
+          <div class="info-pill success">
+            <strong>2) ¿Cómo sacarla desde Chile? (Paso a Paso)</strong>
+            • <b>Opción Digital Rápida (App desde el celular):</b> Descarga una billetera/tarjeta prepago chilena habilitada con PIX en Brasil (como <b>Tenpo, Mercado Pago, Prex o Global66</b>).<br>
+            • <b>Para menores de 18 años (14 a 17 años):</b> Se crea la cuenta en la App y el <b>apoderado autoriza desde su celular</b> con la cédula de identidad vigente de ambos.<br>
+            • Se carga con transferencia desde cualquier banco chileno y se pide la <b>tarjeta física</b> con envío a domicilio (demora aprox. 3 a 5 días hábiles) para tener respaldo sin internet.
+          </div>
+
+          <div class="info-pill warn">
+            <strong>3) ¿Dónde obtenerla presencialmente en Puente Alto?</strong>
+            Si prefieres retirar o gestionar una tarjeta prepago/cuenta presencialmente en la comuna:<br>
+            • <b>Mall Plaza Tobalaba</b> (Av. Camilo Henríquez 3296, Puente Alto): Módulos de atención y sucursales bancarias/retail (Lunes a Domingo 10:00 a 20:00 hrs).<br>
+            • <b>Centro de Puente Alto / Plaza de Armas</b> (Av. Concha y Toro / Manuel Rodríguez): Sucursales BancoEstado (CuentaRUT Visa Débito habilitada para uso internacional previo aviso en App) y puntos de carga/retiro.
+          </div>
+
+          <div class="info-pill alert">
+            <strong>4) Consejos Clave antes de Viajar</strong>
+            • Activa el <b>"Uso Internacional"</b> en la App 48 horas antes del vuelo.<br>
+            • Lleva siempre la <b>tarjeta física + clave PIN de 4 dígitos</b> (en Brasil siempre se paga como <i>"Crédito"</i> aunque sea prepago/débito) y un pequeño respaldo en Reales en efectivo.
+          </div>
+
+          <div class="action-links">
+            <a href="https://www.google.com/maps/search/?api=1&query=Mall+Plaza+Tobalaba+Puente+Alto+Chile" target="_blank" rel="noopener noreferrer" class="modal-cta-btn cta-maps">
+              📍 Ver Módulos en Mall Plaza Tobalaba (Maps)
+            </a>
+            <a href="https://www.google.com/maps/search/?api=1&query=Bancos+Plaza+de+Armas+Puente+Alto+Chile" target="_blank" rel="noopener noreferrer" class="modal-cta-btn cta-web">
+              🏦 Ver Sucursales Centro Puente Alto (Maps)
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Reproductor oculto -->
+    <audio id="bgAudio" preload="auto"></audio>
+  </main>
+
+  <script>
+    // ==========================================
+    // 0. VERIFICADOR AUTOMÁTICO DE IMAGEN DE FONDO
+    // ==========================================
+    const mainCanvas = document.getElementById('mainCanvas');
+    const bgCandidates = ['fondo.jpg', 'fondo (2).jpg', 'fondo.jpeg', 'fondo.png', 'FONDO.JPG'];
+
+    (function resolveBackground() {
+      let idx = 0;
+      function tryNext() {
+        if (idx >= bgCandidates.length) return;
+        const candidate = bgCandidates[idx++];
+        const tester = new Image();
+        tester.onload = () => {
+          mainCanvas.style.backgroundImage = `url('${candidate}')`;
+        };
+        tester.onerror = tryNext;
+        tester.src = candidate;
+      }
+      tryNext();
+    })();
+
+    // ==========================================
+    // 1. SISTEMA DE MÚSICA ALEATORIA (3 MP3)
+    // ==========================================
+    const playlist = ['1.mp3', '2.mp3', '3.mp3'];
+
+    const audio = document.getElementById('bgAudio');
+    const musicBtn = document.getElementById('musicToggle');
+    const iconPlay = document.getElementById('iconPlay');
+    const iconPause = document.getElementById('iconPause');
+
+    let isPlaying = false;
+    let currentIndex = -1;
+
+    function pickRandomTrack(excludeIndex = -1) {
+      if (playlist.length === 1) return 0;
+      let nextIndex;
+      do {
+        nextIndex = Math.floor(Math.random() * playlist.length);
+      } while (nextIndex === excludeIndex);
+      return nextIndex;
+    }
+
+    function loadInitialTrack() {
+      currentIndex = pickRandomTrack();
+      audio.src = playlist[currentIndex];
+    }
+
+    loadInitialTrack();
+
+    audio.addEventListener('ended', () => {
+      currentIndex = pickRandomTrack(currentIndex);
+      audio.src = playlist[currentIndex];
+      audio.play().catch(() => {});
+    });
+
+    musicBtn.addEventListener('click', () => {
+      if (!isPlaying) {
+        audio.play().then(() => {
+          isPlaying = true;
+          musicBtn.classList.add('playing');
+          mainCanvas.classList.add('music-active');
+          iconPlay.style.display = 'none';
+          iconPause.style.display = 'block';
+        }).catch((err) => {
+          console.warn('No se pudo reproducir el audio. Verifica que 1.mp3, 2.mp3 y 3.mp3 estén en la misma carpeta.', err);
+        });
+      } else {
+        audio.pause();
+        isPlaying = false;
+        musicBtn.classList.remove('playing');
+        mainCanvas.classList.remove('music-active');
+        iconPlay.style.display = 'block';
+        iconPause.style.display = 'none';
+      }
+    });
+
+    // ==========================================
+    // 2. EASTER EGG INTERACTIVO AL TOCAR A POLAR
+    // ==========================================
+    const polarHotspot = document.getElementById('polarHotspot');
+    const polarBubble = document.getElementById('polarBubble');
+
+    const polarPhrases = [
+      'Polar está listo para la praia 😎',
+      'Polar ya empacó el bloqueador 🥥',
+      'Polar aprueba este IV° Medio A ✈️',
+      'Polar dice: no olviden el permiso notarial 📄',
+      'Polar activa modo vacaciones en Brasil 🌴',
+      'Polar ya tiene su tarjeta PIX lista 💳'
+    ];
+
+    const burstIcons = ['🥥', '🌴', '😎', '☀️', '✈️', '🇧🇷', '🏖️'];
+    let lastPhraseIdx = -1;
+    let bubbleTimeout = null;
+
+    function triggerPolarFun() {
+      let idx;
+      do {
+        idx = Math.floor(Math.random() * polarPhrases.length);
+      } while (idx === lastPhraseIdx);
+      lastPhraseIdx = idx;
+
+      polarBubble.textContent = polarPhrases[idx];
+      polarBubble.classList.add('visible');
+
+      clearTimeout(bubbleTimeout);
+      bubbleTimeout = setTimeout(() => {
+        polarBubble.classList.remove('visible');
+      }, 3200);
+
+      const rect = polarHotspot.getBoundingClientRect();
+      const canvasRect = mainCanvas.getBoundingClientRect();
+      const originX = rect.left - canvasRect.left + rect.width * 0.55;
+      const originY = rect.top - canvasRect.top + rect.height * 0.45;
+
+      for (let i = 0; i < 6; i++) {
+        const span = document.createElement('span');
+        span.className = 'burst-emoji';
+        span.textContent = burstIcons[Math.floor(Math.random() * burstIcons.length)];
+        span.style.left = originX + 'px';
+        span.style.top = originY + 'px';
+
+        const angle = (Math.random() * Math.PI * 1.4) - 0.3;
+        const dist = 55 + Math.random() * 85;
+        const tx = Math.cos(angle) * dist;
+        const ty = Math.sin(angle) * dist - 20;
+        const rot = (Math.random() * 160 - 80) + 'deg';
+
+        span.style.setProperty('--tx', tx + 'px');
+        span.style.setProperty('--ty', ty + 'px');
+        span.style.setProperty('--rot', rot);
+
+        mainCanvas.appendChild(span);
+        setTimeout(() => span.remove(), 1200);
+      }
+    }
+
+    polarHotspot.addEventListener('click', triggerPolarFun);
+    polarHotspot.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        triggerPolarFun();
+      }
+    });
+
+    // ==========================================
+    // 3. CRONÓMETRO EN RETROCESO (15 DIC 2026 - 11:00 AM)
+    // ==========================================
+    const targetDate = new Date('2026-12-15T11:00:00-03:00').getTime();
+
+    const daysEl = document.getElementById('days');
+    const hoursEl = document.getElementById('hours');
+    const minutesEl = document.getElementById('minutes');
+    const secondsEl = document.getElementById('seconds');
+    const headerEl = document.getElementById('countdownHeader');
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      if (distance <= 0) {
+        daysEl.textContent = '00';
+        hoursEl.textContent = '00';
+        minutesEl.textContent = '00';
+        secondsEl.textContent = '00';
+        headerEl.textContent = '🛫 ¡LLEGÓ EL DÍA DEL EMBARQUE!';
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      daysEl.textContent = String(days).padStart(2, '0');
+      hoursEl.textContent = String(hours).padStart(2, '0');
+      minutesEl.textContent = String(minutes).padStart(2, '0');
+      secondsEl.textContent = String(seconds).padStart(2, '0');
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    // ==========================================
+    // 4. CONTROL DE VENTANAS EMERGENTES (MODALES)
+    // ==========================================
+    function openModal(modalId) {
+      const modal = document.getElementById(modalId);
+      if (modal) modal.classList.add('active');
+    }
+
+    function closeModal(modalId) {
+      const modal = document.getElementById(modalId);
+      if (modal) modal.classList.remove('active');
+    }
+
+    function closeOnBackdrop(event, modalId) {
+      if (event.target.id === modalId) {
+        closeModal(modalId);
+      }
+    }
+  </script>
+</body>
+</html>
