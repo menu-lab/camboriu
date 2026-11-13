@@ -6,7 +6,7 @@
   <title>Gira de Estudio Camboriú 2027 • IV° Medio A - Colegio Altazor</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
   <style>
     * {
       box-sizing: border-box;
@@ -45,7 +45,213 @@
       box-shadow: 0 0 25px rgba(0, 0, 0, 0.08);
     }
 
-    /* Botón de Música Circular y Compacto (Debajo de la rama y sin tapar ningún título) */
+    /* ==========================================
+       EFECTO 1: DESTELLO EN LENTES + BURBUJAS DE COCO
+       ========================================== */
+    .polar-sunglasses-glint {
+      position: absolute;
+      top: 4.9%;
+      left: 14.5%;
+      width: 13.5%;
+      height: 2.3%;
+      border-radius: 999px;
+      pointer-events: none;
+      z-index: 12;
+      overflow: hidden;
+      transform: rotate(-10deg);
+    }
+
+    .polar-sunglasses-glint::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -80%;
+      width: 45%;
+      height: 200%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.85), transparent);
+      transform: skewX(-25deg);
+      animation: glint-sweep 4.2s ease-in-out infinite;
+    }
+
+    @keyframes glint-sweep {
+      0%, 68% { left: -80%; opacity: 0; }
+      75% { opacity: 1; }
+      92% { left: 140%; opacity: 0.9; }
+      100% { left: 140%; opacity: 0; }
+    }
+
+    .coco-bubbles-layer {
+      position: absolute;
+      top: 3%;
+      left: 22%;
+      width: 12%;
+      height: 10%;
+      pointer-events: none;
+      z-index: 12;
+    }
+
+    .coco-bubble {
+      position: absolute;
+      bottom: 10%;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.95), rgba(114, 239, 221, 0.55));
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      opacity: 0;
+      animation: float-bubble 3.6s ease-in infinite;
+    }
+
+    .coco-bubble:nth-child(1) { left: 20%; width: 9px; height: 9px; animation-delay: 0s; }
+    .coco-bubble:nth-child(2) { left: 48%; width: 6px; height: 6px; animation-delay: 1.2s; }
+    .coco-bubble:nth-child(3) { left: 72%; width: 11px; height: 11px; animation-delay: 2.3s; }
+
+    .coco-note {
+      position: absolute;
+      bottom: 15%;
+      left: 42%;
+      font-size: clamp(13px, 1.8dvh, 22px);
+      color: #009c3b;
+      text-shadow: 0 2px 4px rgba(255, 255, 255, 0.9);
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .canvas-wrapper.music-active .coco-note {
+      animation: float-note 2.6s ease-out infinite;
+    }
+
+    .canvas-wrapper.music-active .coco-note.n2 {
+      left: 65%;
+      color: #0077b6;
+      animation-delay: 1.3s;
+    }
+
+    @keyframes float-bubble {
+      0% { transform: translateY(0) scale(0.6); opacity: 0; }
+      25% { opacity: 0.85; }
+      100% { transform: translateY(-48px) translateX(8px) scale(1.15); opacity: 0; }
+    }
+
+    @keyframes float-note {
+      0% { transform: translateY(0) rotate(-10deg) scale(0.7); opacity: 0; }
+      25% { opacity: 1; }
+      100% { transform: translateY(-65px) rotate(18deg) scale(1.15); opacity: 0; }
+    }
+
+    /* ==========================================
+       EFECTO 2: BRISA TROPICAL Y PARTÍCULAS LATERALES
+       ========================================== */
+    .ambient-particles {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 8;
+      overflow: hidden;
+    }
+
+    .sun-sparkle {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #ffdf00 0%, rgba(255, 223, 0, 0) 70%);
+      opacity: 0;
+      animation: sparkle-twinkle 4s ease-in-out infinite;
+    }
+
+    .leaf-drift {
+      position: absolute;
+      font-size: clamp(14px, 2dvh, 24px);
+      opacity: 0.55;
+      filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.12));
+      animation: leaf-sway 9s ease-in-out infinite;
+    }
+
+    @keyframes sparkle-twinkle {
+      0%, 100% { transform: scale(0.4); opacity: 0; }
+      50% { transform: scale(1.4); opacity: 0.85; }
+    }
+
+    @keyframes leaf-sway {
+      0% { transform: translate(0, -10px) rotate(0deg); opacity: 0; }
+      15% { opacity: 0.6; }
+      50% { transform: translate(14px, 45px) rotate(22deg); }
+      85% { opacity: 0.5; }
+      100% { transform: translate(-6px, 105px) rotate(-12deg); opacity: 0; }
+    }
+
+    /* ==========================================
+       EFECTO 3: EASTER EGG INTERACTIVO EN POLAR
+       ========================================== */
+    .polar-hotspot {
+      position: absolute;
+      top: 3.5%;
+      left: 5%;
+      width: 31%;
+      height: 19%;
+      z-index: 22;
+      cursor: pointer;
+      border-radius: 28px;
+    }
+
+    .polar-speech-bubble {
+      position: absolute;
+      top: 19.5%;
+      left: 5%;
+      max-width: 58%;
+      z-index: 30;
+      background: #ffffff;
+      color: #102a43;
+      border: 3px solid #102a43;
+      border-radius: 18px;
+      padding: 0.5em 0.8em;
+      font-size: clamp(11px, 1.55dvh, 18px);
+      font-weight: 700;
+      box-shadow: 0 6px 0 #102a43, 0 10px 18px rgba(0, 0, 0, 0.22);
+      pointer-events: none;
+      opacity: 0;
+      transform: translateY(8px) scale(0.9);
+      transition: opacity 0.22s ease, transform 0.22s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .polar-speech-bubble::before {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: 24px;
+      border-width: 0 9px 10px 9px;
+      border-style: solid;
+      border-color: transparent transparent #102a43 transparent;
+    }
+
+    .polar-speech-bubble::after {
+      content: '';
+      position: absolute;
+      top: -6px;
+      left: 26px;
+      border-width: 0 7px 8px 7px;
+      border-style: solid;
+      border-color: transparent transparent #ffffff transparent;
+    }
+
+    .polar-speech-bubble.visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .burst-emoji {
+      position: absolute;
+      z-index: 35;
+      font-size: clamp(18px, 2.5dvh, 28px);
+      pointer-events: none;
+      animation: burst-fly 1.15s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes burst-fly {
+      0% { transform: translate(0, 0) scale(0.5) rotate(0deg); opacity: 1; }
+      100% { transform: translate(var(--tx), var(--ty)) scale(1.2) rotate(var(--rot)); opacity: 0; }
+    }
+
+    /* Botón de Música Circular y Compacto */
     .music-btn {
       position: absolute;
       top: 15.2%;
@@ -94,239 +300,4 @@
 
     @keyframes pulse-soft {
       0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.06); }
-    }
-
-    @keyframes note-bounce {
-      0%, 100% { transform: rotate(0deg) scale(1); }
-      30% { transform: rotate(-12deg) scale(1.1); }
-      70% { transform: rotate(12deg) scale(1.1); }
-    }
-
-    /* Zona Media Reservada (Para la futura botonera de la Fase 2) */
-    .center-menu-zone {
-      position: absolute;
-      top: 25%;
-      left: 8%;
-      width: 84%;
-      height: 56%;
-      z-index: 10;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      pointer-events: none;
-    }
-
-    /* Cronómetro en Retroceso sobre las olas inferiores */
-    .countdown-dock {
-      position: absolute;
-      bottom: 2.3%;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 90%;
-      z-index: 20;
-      background: rgba(9, 36, 66, 0.88);
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-      border: 3px solid #72efdd;
-      border-radius: 22px;
-      padding: 0.65em 0.9em;
-      box-shadow: 0 8px 20px rgba(0, 20, 45, 0.45);
-      text-align: center;
-      color: #ffffff;
-    }
-
-    .countdown-title {
-      font-size: clamp(12px, 1.85dvh, 22px);
-      font-weight: 700;
-      letter-spacing: 2px;
-      color: #ffdf00;
-      text-transform: uppercase;
-      margin-bottom: 0.35em;
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
-    }
-
-    .countdown-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 0.45em;
-    }
-
-    .time-box {
-      background: linear-gradient(180deg, #132a46 0%, #071324 100%);
-      border: 2px solid rgba(114, 239, 221, 0.45);
-      border-radius: 12px;
-      padding: 0.35em 0.2em;
-      box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.7);
-    }
-
-    .time-value {
-      font-family: 'Orbitron', sans-serif;
-      font-size: clamp(16px, 2.7dvh, 34px);
-      font-weight: 900;
-      color: #ffffff;
-      line-height: 1.1;
-      text-shadow: 0 0 10px rgba(114, 239, 221, 0.65);
-    }
-
-    .time-label {
-      font-size: clamp(9px, 1.2dvh, 14px);
-      font-weight: 600;
-      color: #72efdd;
-      letter-spacing: 1px;
-      margin-top: 0.15em;
-    }
-
-    .flight-subtitle {
-      font-size: clamp(9px, 1.25dvh, 15px);
-      color: #e0fbfc;
-      margin-top: 0.4em;
-      letter-spacing: 0.6px;
-      opacity: 0.95;
-    }
-  </style>
-</head>
-<body>
-
-  <main class="canvas-wrapper">
-    <!-- Botón de Música Circular Compacto (Sin tapar el título) -->
-    <button id="musicToggle" class="music-btn" type="button" aria-label="Reproducir música" title="Música Brasil">
-      <!-- Icono Play + Nota Musical -->
-      <svg id="iconPlay" viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
-      </svg>
-      <!-- Icono Pausa (oculto al inicio) -->
-      <svg id="iconPause" viewBox="0 0 24 24" aria-hidden="true" style="display: none;">
-        <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
-      </svg>
-    </button>
-
-    <!-- Espacio Central Limpio para los Botones de la Fase 2 -->
-    <section class="center-menu-zone" id="menuButtonsContainer">
-      <!-- Aquí integraremos los botones centrales cuando me envíes la lista -->
-    </section>
-
-    <!-- Cronómetro hacia atrás sobre las olas -->
-    <footer class="countdown-dock">
-      <div class="countdown-title" id="countdownHeader">✈️ FALTAN PARA EL VUELO</div>
-      <div class="countdown-grid">
-        <div class="time-box">
-          <div class="time-value" id="days">000</div>
-          <div class="time-label">DÍAS</div>
-        </div>
-        <div class="time-box">
-          <div class="time-value" id="hours">00</div>
-          <div class="time-label">HRS</div>
-        </div>
-        <div class="time-box">
-          <div class="time-value" id="minutes">00</div>
-          <div class="time-label">MIN</div>
-        </div>
-        <div class="time-box">
-          <div class="time-value" id="seconds">00</div>
-          <div class="time-label">SEG</div>
-        </div>
-      </div>
-      <div class="flight-subtitle">15 DE DICIEMBRE 2026 • 11:00 AM</div>
-    </footer>
-
-    <!-- Reproductor oculto -->
-    <audio id="bgAudio" preload="auto"></audio>
-  </main>
-
-  <script>
-    // ==========================================
-    // 1. SISTEMA DE MÚSICA ALEATORIA (3 MP3)
-    // ==========================================
-    const playlist = ['1.mp3', '2.mp3', '3.mp3'];
-
-    const audio = document.getElementById('bgAudio');
-    const musicBtn = document.getElementById('musicToggle');
-    const iconPlay = document.getElementById('iconPlay');
-    const iconPause = document.getElementById('iconPause');
-
-    let isPlaying = false;
-    let currentIndex = -1;
-
-    function pickRandomTrack(excludeIndex = -1) {
-      if (playlist.length === 1) return 0;
-      let nextIndex;
-      do {
-        nextIndex = Math.floor(Math.random() * playlist.length);
-      } while (nextIndex === excludeIndex);
-      return nextIndex;
-    }
-
-    function loadInitialTrack() {
-      currentIndex = pickRandomTrack();
-      audio.src = playlist[currentIndex];
-    }
-
-    loadInitialTrack();
-
-    audio.addEventListener('ended', () => {
-      currentIndex = pickRandomTrack(currentIndex);
-      audio.src = playlist[currentIndex];
-      audio.play().catch(() => {});
-    });
-
-    musicBtn.addEventListener('click', () => {
-      if (!isPlaying) {
-        audio.play().then(() => {
-          isPlaying = true;
-          musicBtn.classList.add('playing');
-          iconPlay.style.display = 'none';
-          iconPause.style.display = 'block';
-        }).catch((err) => {
-          console.warn('No se pudo reproducir el audio. Verifica que 1.mp3, 2.mp3 y 3.mp3 estén en la misma carpeta.', err);
-        });
-      } else {
-        audio.pause();
-        isPlaying = false;
-        musicBtn.classList.remove('playing');
-        iconPlay.style.display = 'block';
-        iconPause.style.display = 'none';
-      }
-    });
-
-    // ==========================================
-    // 2. CRONÓMETRO EN RETROCESO (15 DIC 2026 - 11:00 AM)
-    // ==========================================
-    const targetDate = new Date('2026-12-15T11:00:00-03:00').getTime();
-
-    const daysEl = document.getElementById('days');
-    const hoursEl = document.getElementById('hours');
-    const minutesEl = document.getElementById('minutes');
-    const secondsEl = document.getElementById('seconds');
-    const headerEl = document.getElementById('countdownHeader');
-
-    function updateCountdown() {
-      const now = new Date().getTime();
-      const distance = targetDate - now;
-
-      if (distance <= 0) {
-        daysEl.textContent = '00';
-        hoursEl.textContent = '00';
-        minutesEl.textContent = '00';
-        secondsEl.textContent = '00';
-        headerEl.textContent = '🛫 ¡LLEGÓ EL DÍA DEL EMBARQUE!';
-        return;
-      }
-
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      daysEl.textContent = String(days).padStart(2, '0');
-      hoursEl.textContent = String(hours).padStart(2, '0');
-      minutesEl.textContent = String(minutes).padStart(2, '0');
-      secondsEl.textContent = String(seconds).padStart(2, '0');
-    }
-
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-  </script>
-</body>
-</html>
+      50% { transform:
