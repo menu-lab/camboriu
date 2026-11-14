@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Gira de Estudio Camboriú 2027 • IV° Medio A - Colegio Altazor</title>
+  <!-- FAVICON AUTOMÁTICO INCRUSTADO (POLAR CON LENTES + BRASIL) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23009c3b' stroke='%23102a43' stroke-width='3'/%3E%3Cpolygon points='32,8 56,32 32,56 8,32' fill='%23ffdf00'/%3E%3Ccircle cx='18' cy='19' r='6.5' fill='%23ffffff' stroke='%23102a43' stroke-width='3'/%3E%3Ccircle cx='46' cy='19' r='6.5' fill='%23ffffff' stroke='%23102a43' stroke-width='3'/%3E%3Cellipse cx='32' cy='35' rx='21' ry='19' fill='%23ffffff' stroke='%23102a43' stroke-width='3'/%3E%3Crect x='14' y='26' width='16' height='10' rx='3' fill='%23102a43'/%3E%3Crect x='34' y='26' width='16' height='10' rx='3' fill='%23102a43'/%3E%3Cline x1='30' y1='29' x2='34' y2='29' stroke='%23102a43' stroke-width='3'/%3E%3Cellipse cx='32' cy='41' rx='4.5' ry='3' fill='%23102a43'/%3E%3Cpath d='M26 46 Q32 51 38 46' fill='none' stroke='%23102a43' stroke-width='2.8' stroke-linecap='round'/%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
@@ -197,14 +199,14 @@
       position: absolute;
       top: 19.6%;
       left: 4.5%;
-      max-width: 63%;
+      max-width: 72%;
       z-index: 30;
       background: #ffffff;
       color: #102a43;
       border: 3px solid #102a43;
       border-radius: 18px;
       padding: 0.48em 0.82em;
-      font-size: clamp(11px, 1.52dvh, 17px);
+      font-size: clamp(11px, 1.48dvh, 17px);
       font-weight: 700;
       line-height: 1.25;
       box-shadow: 0 5px 0 #102a43, 0 10px 18px rgba(0, 0, 0, 0.2);
@@ -253,28 +255,30 @@
     }
 
     /* ==========================================
-       CONTROLES COMPACTOS SUPERIOR DERECHA (SIN TAPAR TÍTULO)
+       CONTROLES APILADOS VERTICALMENTE (UNO ARRIBA DEL OTRO)
+       SIN TAPAR NADA DEL TÍTULO NI INSIGNIA
        ========================================== */
     .top-right-tools {
       position: absolute;
-      top: 15.2%;
-      right: 4.2%;
+      top: 15.0%;
+      right: 3.6%;
       z-index: 25;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      gap: clamp(6px, 0.9dvh, 12px);
+      gap: clamp(6px, 0.85dvh, 11px);
     }
 
     .mini-tool-btn {
-      width: clamp(34px, 4.3dvh, 50px);
-      height: clamp(34px, 4.3dvh, 50px);
+      width: clamp(34px, 4.2dvh, 48px);
+      height: clamp(34px, 4.2dvh, 48px);
       border: 2.5px solid #ffffff;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      box-shadow: 0 4px 12px rgba(0, 55, 95, 0.35), inset 0 2px 4px rgba(255, 255, 255, 0.45);
+      box-shadow: 0 4px 10px rgba(0, 55, 95, 0.35), inset 0 2px 4px rgba(255, 255, 255, 0.45);
       transition: transform 0.2s ease, background 0.3s ease;
     }
 
@@ -284,30 +288,6 @@
 
     .mini-tool-btn:active {
       transform: scale(0.92);
-    }
-
-    .pt-btn {
-      background: linear-gradient(135deg, #ffdf00 0%, #009c3b 100%);
-      color: #102a43;
-      border-color: #102a43;
-      font-family: 'Fredoka', sans-serif;
-      font-weight: 700;
-      font-size: clamp(11px, 1.45dvh, 17px);
-      flex-direction: column;
-      line-height: 1;
-    }
-
-    .pt-btn span.flag {
-      font-size: 1.05em;
-    }
-
-    .pt-btn span.code {
-      font-size: 0.65em;
-      background: #102a43;
-      color: #ffdf00;
-      padding: 1px 4px;
-      border-radius: 6px;
-      margin-top: 1px;
     }
 
     .music-btn {
@@ -334,6 +314,30 @@
       animation: note-bounce 1.2s ease-in-out infinite;
     }
 
+    .pt-btn {
+      background: linear-gradient(135deg, #ffdf00 0%, #009c3b 100%);
+      color: #102a43;
+      border-color: #102a43;
+      font-family: 'Fredoka', sans-serif;
+      font-weight: 700;
+      font-size: clamp(11px, 1.4dvh, 16px);
+      flex-direction: column;
+      line-height: 1;
+    }
+
+    .pt-btn span.flag {
+      font-size: 1.05em;
+    }
+
+    .pt-btn span.code {
+      font-size: 0.62em;
+      background: #102a43;
+      color: #ffdf00;
+      padding: 1px 4px;
+      border-radius: 6px;
+      margin-top: 1px;
+    }
+
     @keyframes pulse-soft {
       0%, 100% { transform: scale(1); }
       50% { transform: scale(1.06); }
@@ -346,11 +350,11 @@
     }
 
     /* ==========================================
-       ZONA MEDIA: BOTONERA INTERACTIVA (3 BOTONES)
+       ZONA MEDIA: 4 BOTONES COMPACTOS RESUMIDOS
        ========================================== */
     .center-menu-zone {
       position: absolute;
-      top: 26%;
+      top: 26.8%;
       left: 50%;
       transform: translateX(-50%);
       width: 82%;
@@ -360,21 +364,21 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: clamp(14px, 2.3dvh, 26px);
+      gap: clamp(10px, 1.55dvh, 18px);
     }
 
     .menu-card-btn {
       position: relative;
       width: 100%;
-      padding: clamp(12px, 1.8dvh, 22px) clamp(16px, 2.2dvh, 28px);
-      border-radius: 22px;
-      border: 3.5px solid #102a43;
+      padding: clamp(9px, 1.35dvh, 16px) clamp(14px, 1.8dvh, 22px);
+      border-radius: 20px;
+      border: 3px solid #102a43;
       display: flex;
       align-items: center;
-      gap: clamp(10px, 1.5dvh, 18px);
+      gap: clamp(10px, 1.4dvh, 16px);
       cursor: pointer;
       text-align: left;
-      box-shadow: 0 7px 0 #102a43, 0 12px 20px rgba(16, 42, 67, 0.22);
+      box-shadow: 0 6px 0 #102a43, 0 10px 16px rgba(16, 42, 67, 0.2);
       transition: transform 0.15s ease, box-shadow 0.15s ease;
     }
 
@@ -383,12 +387,17 @@
     }
 
     .menu-card-btn:active {
-      transform: translateY(4px);
-      box-shadow: 0 3px 0 #102a43, 0 6px 12px rgba(16, 42, 67, 0.2);
+      transform: translateY(3px);
+      box-shadow: 0 2px 0 #102a43, 0 5px 10px rgba(16, 42, 67, 0.18);
     }
 
-    .btn-raitrai {
+    .btn-viaje {
       background: linear-gradient(135deg, #009c3b 0%, #0077b6 100%);
+      color: #ffffff;
+    }
+
+    .btn-maleta {
+      background: linear-gradient(135deg, #ef233c 0%, #d90429 100%);
       color: #ffffff;
     }
 
@@ -398,50 +407,50 @@
     }
 
     .btn-pix {
-      background: linear-gradient(135deg, #00b4d8 0%, #0077b6 100%);
+      background: linear-gradient(135deg, #00b4d8 0%, #023e8a 100%);
       color: #ffffff;
     }
 
     .btn-badge-icon {
       flex-shrink: 0;
-      width: clamp(40px, 5.4dvh, 62px);
-      height: clamp(40px, 5.4dvh, 62px);
-      border-radius: 16px;
+      width: clamp(36px, 4.7dvh, 54px);
+      height: clamp(36px, 4.7dvh, 54px);
+      border-radius: 14px;
       background: rgba(255, 255, 255, 0.94);
       border: 2.5px solid #102a43;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: clamp(20px, 2.8dvh, 34px);
+      font-size: clamp(18px, 2.5dvh, 30px);
       box-shadow: 0 3px 0 rgba(16, 42, 67, 0.25);
     }
 
     .btn-text-group {
       flex: 1;
-      padding-right: 1.4em;
+      padding-right: 1.5em;
     }
 
     .btn-title {
-      font-size: clamp(14px, 2.05dvh, 25px);
+      font-size: clamp(13px, 1.85dvh, 22px);
       font-weight: 700;
       line-height: 1.15;
       text-transform: uppercase;
-      letter-spacing: 0.4px;
+      letter-spacing: 0.3px;
     }
 
     .btn-subtitle {
-      font-size: clamp(10px, 1.35dvh, 16px);
+      font-size: clamp(9.5px, 1.25dvh, 14.5px);
       font-weight: 600;
-      opacity: 0.92;
-      margin-top: 0.2em;
+      opacity: 0.93;
+      margin-top: 0.15em;
     }
 
     .pointer-hand {
       position: absolute;
-      right: 12px;
-      bottom: -10px;
-      width: clamp(28px, 3.8dvh, 44px);
-      height: clamp(28px, 3.8dvh, 44px);
+      right: 11px;
+      bottom: -8px;
+      width: clamp(24px, 3.3dvh, 38px);
+      height: clamp(24px, 3.3dvh, 38px);
       filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.35));
       animation: tap-hand 1.6s ease-in-out infinite;
       pointer-events: none;
@@ -529,13 +538,13 @@
       position: absolute;
       inset: 0;
       z-index: 50;
-      background: rgba(9, 36, 66, 0.78);
+      background: rgba(9, 36, 66, 0.8);
       backdrop-filter: blur(5px);
       -webkit-backdrop-filter: blur(5px);
       display: none;
       align-items: center;
       justify-content: center;
-      padding: 5%;
+      padding: 4.5%;
       animation: fade-in 0.22s ease;
     }
 
@@ -551,7 +560,7 @@
     .modal-card {
       position: relative;
       width: 100%;
-      max-height: 86%;
+      max-height: 88%;
       background: #ffffff;
       border: 4px solid #102a43;
       border-radius: 24px;
@@ -568,7 +577,7 @@
     }
 
     .modal-header {
-      padding: 0.9em 1.1em;
+      padding: 0.85em 1.05em;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -576,8 +585,13 @@
       border-bottom: 3px solid #102a43;
     }
 
-    .modal-header.raitrai-head {
+    .modal-header.viaje-head {
       background: linear-gradient(135deg, #009c3b 0%, #0077b6 100%);
+      color: #ffffff;
+    }
+
+    .modal-header.maleta-head {
+      background: linear-gradient(135deg, #ef233c 0%, #d90429 100%);
       color: #ffffff;
     }
 
@@ -587,7 +601,7 @@
     }
 
     .modal-header.pix-head {
-      background: linear-gradient(135deg, #00b4d8 0%, #03045e 100%);
+      background: linear-gradient(135deg, #00b4d8 0%, #023e8a 100%);
       color: #ffffff;
     }
 
@@ -597,7 +611,7 @@
     }
 
     .modal-title {
-      font-size: clamp(15px, 2.1dvh, 24px);
+      font-size: clamp(14.5px, 2.0dvh, 23px);
       font-weight: 700;
       line-height: 1.2;
     }
@@ -626,21 +640,21 @@
     }
 
     .modal-body {
-      padding: 1em 1.15em;
+      padding: 0.95em 1.1em;
       overflow-y: auto;
       color: #102a43;
-      font-size: clamp(12px, 1.65dvh, 18px);
-      line-height: 1.45;
+      font-size: clamp(11.5px, 1.58dvh, 17.5px);
+      line-height: 1.42;
       display: flex;
       flex-direction: column;
-      gap: 0.75em;
+      gap: 0.7em;
       user-select: text;
     }
 
     .info-pill {
       background: #f0f9ff;
       border-left: 5px solid #0077b6;
-      padding: 0.65em 0.85em;
+      padding: 0.6em 0.8em;
       border-radius: 10px;
     }
 
@@ -666,11 +680,30 @@
       color: #0b2545;
     }
 
+    .day-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.45em;
+      margin-top: 0.3em;
+    }
+
+    .day-row {
+      background: #ffffff;
+      border: 1.5px solid #bae6fd;
+      border-radius: 8px;
+      padding: 0.45em 0.65em;
+      font-size: 0.94em;
+    }
+
+    .day-row b {
+      color: #0077b6;
+    }
+
     .action-links {
       display: flex;
       flex-direction: column;
-      gap: 0.55em;
-      margin-top: 0.25em;
+      gap: 0.5em;
+      margin-top: 0.2em;
     }
 
     .modal-cta-btn {
@@ -679,11 +712,11 @@
       justify-content: center;
       gap: 0.5em;
       width: 100%;
-      padding: 0.75em 1em;
+      padding: 0.7em 0.95em;
       border-radius: 14px;
       border: 3px solid #102a43;
       font-family: 'Fredoka', sans-serif;
-      font-size: clamp(13px, 1.75dvh, 19px);
+      font-size: clamp(12.5px, 1.7dvh, 18.5px);
       font-weight: 700;
       text-decoration: none;
       text-align: center;
@@ -715,35 +748,35 @@
       border: 2.5px solid #102a43;
       border-radius: 14px;
       background: #f8fafc;
-      padding: 0.7em;
+      padding: 0.65em;
       text-align: center;
     }
 
     .croquis-title {
       font-weight: 700;
-      font-size: 0.92em;
+      font-size: 0.9em;
       color: #9b1c1c;
-      margin-bottom: 0.4em;
+      margin-bottom: 0.35em;
       text-transform: uppercase;
     }
 
     /* ==========================================
-       ESTILOS MINI-DICCIONARIO PORTUGUÉS BÁSICO
+       ESTILOS MINI-DICCIONARIO PORTUGUÉS AMPLIADO (4 TABS)
        ========================================== */
     .pt-tabs {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 0.4em;
     }
 
     .pt-tab-btn {
-      padding: 0.45em 0.3em;
+      padding: 0.45em 0.35em;
       border-radius: 10px;
       border: 2px solid #102a43;
       background: #f1f5f9;
       color: #102a43;
       font-family: 'Fredoka', sans-serif;
-      font-size: clamp(10px, 1.35dvh, 15px);
+      font-size: clamp(10.5px, 1.35dvh, 15px);
       font-weight: 700;
       cursor: pointer;
     }
@@ -762,7 +795,7 @@
       border: 2px solid #cbd5e1;
       border-left: 5px solid #009c3b;
       border-radius: 12px;
-      padding: 0.6em 0.75em;
+      padding: 0.55em 0.7em;
     }
 
     .pt-phrase-info {
@@ -771,18 +804,18 @@
 
     .pt-word {
       font-weight: 700;
-      font-size: 1.05em;
+      font-size: 1.03em;
       color: #0b2545;
     }
 
     .pt-pron {
-      font-size: 0.85em;
+      font-size: 0.84em;
       color: #0077b6;
       font-style: italic;
     }
 
     .pt-es {
-      font-size: 0.92em;
+      font-size: 0.9em;
       color: #334155;
       margin-top: 0.1em;
     }
@@ -796,7 +829,7 @@
       color: #102a43;
       font-family: 'Fredoka', sans-serif;
       font-weight: 700;
-      font-size: 0.88em;
+      font-size: 0.86em;
       cursor: pointer;
       box-shadow: 0 2px 0 #102a43;
     }
@@ -833,15 +866,10 @@
 
     <!-- EFECTO 3: Área táctil + Globo de cómic automático de Polar -->
     <div class="polar-hotspot" id="polarHotspot" role="button" tabindex="0" aria-label="Tocar a Polar"></div>
-    <div class="polar-speech-bubble" id="polarBubble">Polar ya tiene la maleta lista 😎</div>
+    <div class="polar-speech-bubble" id="polarBubble">Polar recuerda: ¡cero alcohol y nada cortopunzante en cabina! 😎</div>
 
-    <!-- Controles Compactos Superior Derecha (Portugués Básico + Música) -->
+    <!-- Controles Apilados Verticalmente (Uno arriba del otro, sin tapar el título) -->
     <div class="top-right-tools">
-      <button type="button" class="mini-tool-btn pt-btn" onclick="openModal('modalPortugues')" aria-label="Portugués básico" title="Aprende Portugués Básico">
-        <span class="flag">🇧🇷</span>
-        <span class="code">PT</span>
-      </button>
-
       <button id="musicToggle" class="mini-tool-btn music-btn" type="button" aria-label="Reproducir música" title="Música Brasil">
         <svg id="iconPlay" viewBox="0 0 24 24" aria-hidden="true">
           <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
@@ -850,43 +878,60 @@
           <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
         </svg>
       </button>
+
+      <button type="button" class="mini-tool-btn pt-btn" onclick="openModal('modalPortugues')" aria-label="Portugués básico" title="Aprende Portugués Básico">
+        <span class="flag">🇧🇷</span>
+        <span class="code">PT</span>
+      </button>
     </div>
 
     <!-- ==========================================
-         BOTONERA CENTRAL (3 BOTONES)
+         BOTONERA CENTRAL RESUMIDA (4 BOTONES)
          ========================================== -->
     <section class="center-menu-zone" aria-label="Menú principal de información">
       
-      <!-- BOTÓN 1: TURISMO RAI TRAI -->
-      <button type="button" class="menu-card-btn btn-raitrai" onclick="openModal('modalRaitrai')">
-        <div class="btn-badge-icon">🚌</div>
+      <!-- BOTÓN 1: VUELOS, HOTEL E ITINERARIO -->
+      <button type="button" class="menu-card-btn btn-viaje" onclick="openModal('modalViaje')">
+        <div class="btn-badge-icon">✈️</div>
         <div class="btn-text-group">
-          <div class="btn-title">Agencia Rai Trai</div>
-          <div class="btn-subtitle">Empresa oficial • Contacto y respaldo</div>
+          <div class="btn-title">Vuelos, Hotel & Itinerario</div>
+          <div class="btn-subtitle">Horarios SKY, Hotel Plaza Camboriú y 8 días</div>
         </div>
         <svg class="pointer-hand" viewBox="0 0 32 32" aria-hidden="true">
           <path fill="#ffffff" stroke="#102a43" stroke-width="2.2" stroke-linejoin="round" d="M13 3a2.5 2.5 0 0 1 2.5 2.5V14h1.2a2.2 2.2 0 0 1 2.2 2.2v.5h1a2.2 2.2 0 0 1 2.2 2.2v.6h.8a2.2 2.2 0 0 1 2.2 2.2v3.3c0 3.3-2.7 6-6 6h-5.3c-2.3 0-4.4-1.3-5.4-3.3l-2.6-5.1a2.1 2.1 0 0 1 1-2.8 2.1 2.1 0 0 1 2.7.8l1.2 2V5.5A2.5 2.5 0 0 1 13 3z"/>
         </svg>
       </button>
 
-      <!-- BOTÓN 2: PERMISO NOTARIAL -->
+      <!-- BOTÓN 2: MALETAS, AEROPUERTO Y PROTOCOLO -->
+      <button type="button" class="menu-card-btn btn-maleta" onclick="openModal('modalMaleta')">
+        <div class="btn-badge-icon">🧳</div>
+        <div class="btn-text-group">
+          <div class="btn-title">Maletas, Aeropuerto & Reglas</div>
+          <div class="btn-subtitle">Pesos 23kg/5kg, prohibiciones, botiquín y normas</div>
+        </div>
+        <svg class="pointer-hand" viewBox="0 0 32 32" aria-hidden="true">
+          <path fill="#ffffff" stroke="#102a43" stroke-width="2.2" stroke-linejoin="round" d="M13 3a2.5 2.5 0 0 1 2.5 2.5V14h1.2a2.2 2.2 0 0 1 2.2 2.2v.5h1a2.2 2.2 0 0 1 2.2 2.2v.6h.8a2.2 2.2 0 0 1 2.2 2.2v3.3c0 3.3-2.7 6-6 6h-5.3c-2.3 0-4.4-1.3-5.4-3.3l-2.6-5.1a2.1 2.1 0 0 1 1-2.8 2.1 2.1 0 0 1 2.7.8l1.2 2V5.5A2.5 2.5 0 0 1 13 3z"/>
+        </svg>
+      </button>
+
+      <!-- BOTÓN 3: PERMISO NOTARIAL Y DOCUMENTOS -->
       <button type="button" class="menu-card-btn btn-notaria" onclick="openModal('modalNotaria')">
         <div class="btn-badge-icon">📄</div>
         <div class="btn-text-group">
-          <div class="btn-title">Permiso Notarial</div>
-          <div class="btn-subtitle">Trámite de viaje, horarios y ubicación</div>
+          <div class="btn-title">Permiso Notarial & Docs</div>
+          <div class="btn-subtitle">Notaría Puente Alto, horarios, cédula y mapa</div>
         </div>
         <svg class="pointer-hand" viewBox="0 0 32 32" aria-hidden="true">
           <path fill="#ffffff" stroke="#102a43" stroke-width="2.2" stroke-linejoin="round" d="M13 3a2.5 2.5 0 0 1 2.5 2.5V14h1.2a2.2 2.2 0 0 1 2.2 2.2v.5h1a2.2 2.2 0 0 1 2.2 2.2v.6h.8a2.2 2.2 0 0 1 2.2 2.2v3.3c0 3.3-2.7 6-6 6h-5.3c-2.3 0-4.4-1.3-5.4-3.3l-2.6-5.1a2.1 2.1 0 0 1 1-2.8 2.1 2.1 0 0 1 2.7.8l1.2 2V5.5A2.5 2.5 0 0 1 13 3z"/>
         </svg>
       </button>
 
-      <!-- BOTÓN 3: TARJETA & PAGOS PIX BRASIL -->
+      <!-- BOTÓN 4: TARJETA PIX Y DINERO EN BRASIL -->
       <button type="button" class="menu-card-btn btn-pix" onclick="openModal('modalPix')">
         <div class="btn-badge-icon">💳</div>
         <div class="btn-text-group">
-          <div class="btn-title">Tarjeta & Pagos PIX</div>
-          <div class="btn-subtitle">Cómo sacarla en Chile y pagar en Brasil</div>
+          <div class="btn-title">Tarjeta PIX & Dinero</div>
+          <div class="btn-subtitle">Cómo sacarla, reales y dónde obtenerla</div>
         </div>
         <svg class="pointer-hand" viewBox="0 0 32 32" aria-hidden="true">
           <path fill="#ffffff" stroke="#102a43" stroke-width="2.2" stroke-linejoin="round" d="M13 3a2.5 2.5 0 0 1 2.5 2.5V14h1.2a2.2 2.2 0 0 1 2.2 2.2v.5h1a2.2 2.2 0 0 1 2.2 2.2v.6h.8a2.2 2.2 0 0 1 2.2 2.2v3.3c0 3.3-2.7 6-6 6h-5.3c-2.3 0-4.4-1.3-5.4-3.3l-2.6-5.1a2.1 2.1 0 0 1 1-2.8 2.1 2.1 0 0 1 2.7.8l1.2 2V5.5A2.5 2.5 0 0 1 13 3z"/>
@@ -920,35 +965,51 @@
     </footer>
 
     <!-- ==========================================
-         VENTANA EMERGENTE 1: TURISMO RAI TRAI
+         MODAL 1: VUELOS, HOTEL, RAI TRAI E ITINERARIO 8 DÍAS
          ========================================== -->
-    <div id="modalRaitrai" class="modal-overlay" onclick="closeOnBackdrop(event, 'modalRaitrai')">
+    <div id="modalViaje" class="modal-overlay" onclick="closeOnBackdrop(event, 'modalViaje')">
       <div class="modal-card">
-        <div class="modal-header raitrai-head">
-          <div class="modal-title">🚌 Turismo Rai Trai • Viajes de Estudio</div>
-          <button type="button" class="close-modal-btn" onclick="closeModal('modalRaitrai')" aria-label="Cerrar">✕</button>
+        <div class="modal-header viaje-head">
+          <div class="modal-title">✈️ Vuelos, Hotel & Itinerario (8 Días)</div>
+          <button type="button" class="close-modal-btn" onclick="closeModal('modalViaje')" aria-label="Cerrar">✕</button>
         </div>
         <div class="modal-body">
-          <div class="info-pill">
-            <strong>¿Quiénes nos llevan?</strong>
-            Empresa 100% chilena especializada en giras de estudio con <b>más de 35 años de trayectoria</b>, más de 3.000 cursos atendidos y acompañamiento operativo antes, durante y después del viaje.
-          </div>
-
           <div class="info-pill warn">
-            <strong>Programa Camboriú & Santa Catarina</strong>
-            Incluye transporte, alojamiento, alimentación, coordinación permanente en destino, playas, parques temáticos/acuáticos y fiestas estudiantiles organizadas.
+            <strong>🛫 Vuelos Oficiales SKY Airline (15 al 22 Dic)</strong>
+            • <b>Punto de encuentro ida:</b> Terminal 2, Puerta 4, Piso 3.<br>
+            • <b>Ida (Mar 15 Dic — Vuelo SKY H2 630):</b> Presentación <b>11:45 hrs</b> • Salida Santiago 15:45 hrs → Llegada Florianópolis 19:00 hrs.<br>
+            • <b>Vuelta (Mar 22 Dic — Vuelo SKY H2 639):</b> Presentación 16:00 hrs • Salida Florianópolis 20:00 hrs → Llegada Santiago 23:45 hrs.
           </div>
 
           <div class="info-pill">
-            <strong>Oficina Central & Contacto Oficial</strong>
-            📍 <b>Dirección:</b> La Concepción #141, Oficina 305, Providencia, Santiago.<br>
-            ☎️ <b>Teléfono fijo:</b> (+56 2) 2236 3232<br>
-            ✉️ <b>Correo:</b> raitrai@raitrai.cl
+            <strong>🏨 Hotel Confirmado en Camboriú</strong>
+            <b>Hotel Plaza Camboriú</b> (Check-in: 15-12 / Check-out: 22-12)<br>
+            📍 Dirección: <b>Av. Brasil 1410, Balneario Camboriú</b><br>
+            ☎️ Teléfono Hotel: +55 47 3367-0700
+          </div>
+
+          <div class="info-pill success">
+            <strong>🗓️ Itinerario Día a Día (Programa 8D / 7N)</strong>
+            <div class="day-list">
+              <div class="day-row"><b>Día 1 (Mar 15):</b> Vuelo a Florianópolis, traslado a Camboriú, cena en ruta y check-in hotel.</div>
+              <div class="day-row"><b>Día 2 (Mié 16):</b> Tour Blumenau con guía local, almuerzo Villa Germánica, Cascata Carolina, Pool Party, cena y <b>Disco Blanco</b>.</div>
+              <div class="day-row"><b>Día 3 (Jue 17):</b> Full Day <b>Parque Beto Carrero World</b> (con almuerzo) + <b>Cena de Velas</b> en Itapema.</div>
+              <div class="day-row"><b>Día 4 (Vie 18):</b> Actividad en Playa Camboriú, almuerzo Quintal 47, Walking Tour, cena y <b>Disco Glitter</b>.</div>
+              <div class="day-row"><b>Día 5 (Sáb 19):</b> <b>Space Adventure</b> + Multiparque con almuerzo, cena hotel y <b>Disco Flúor</b>.</div>
+              <div class="day-row"><b>Día 6 (Dom 20):</b> <b>Parque Unipraia + Teleférico + Youhoo</b>, almuerzo Mega, Mall Camboriú y cena en <b>Cristo Luz</b>.</div>
+              <div class="day-row"><b>Día 7 (Lun 21):</b> <b>Barco Pirata</b> a Playa Laranjeira, almuerzo Pedra de Baleias, tarde de playa y cena hotel.</div>
+              <div class="day-row"><b>Día 8 (Mar 22):</b> Check-out, almuerzo en Camboriú, traslado al aeropuerto de Florianópolis y vuelo a Santiago.</div>
+            </div>
+          </div>
+
+          <div class="info-pill">
+            <strong>🚌 Agencia Turismo Rai Trai (35+ años)</strong>
+            Oficina: La Concepción 141, Of. 305, Providencia • Tel: (+56 2) 2236 3232 • raitrai@raitrai.cl
           </div>
 
           <div class="action-links">
-            <a href="https://www.raitrai.cl/camboru-y-florianopolis" target="_blank" rel="noopener noreferrer" class="modal-cta-btn cta-web">
-              🌐 Ver Programa Camboriú en RaiTrai.cl
+            <a href="https://www.google.com/maps/search/?api=1&query=Hotel+Plaza+Camboriu+Av+Brasil+1410+Balneario+Camboriu" target="_blank" rel="noopener noreferrer" class="modal-cta-btn cta-maps">
+              📍 Ver Hotel Plaza Camboriú en Google Maps
             </a>
             <a href="https://wa.me/56998183857" target="_blank" rel="noopener noreferrer" class="modal-cta-btn cta-whatsapp">
               💬 WhatsApp Oficial Rai Trai (+56 9 9818 3857)
@@ -959,38 +1020,80 @@
     </div>
 
     <!-- ==========================================
-         VENTANA EMERGENTE 2: PERMISO NOTARIAL
+         MODAL 2: MALETAS, AEROPUERTO, SALUD Y REGLAS
+         ========================================== -->
+    <div id="modalMaleta" class="modal-overlay" onclick="closeOnBackdrop(event, 'modalMaleta')">
+      <div class="modal-card">
+        <div class="modal-header maleta-head">
+          <div class="modal-title">🧳 Maletas, Aeropuerto & Reglas del Curso</div>
+          <button type="button" class="close-modal-btn" onclick="closeModal('modalMaleta')" aria-label="Cerrar">✕</button>
+        </div>
+        <div class="modal-body">
+          <div class="info-pill">
+            <strong>1) Pesos y Medidas Oficiales (SKY)</strong>
+            • <b>Maleta en Bodega:</b> Máximo <b>23 kg</b> y hasta <b>158 cm lineales</b> (largo + ancho + alto). Debe llevar identificador con datos, candado con clave y la cinta distintiva del curso.<br>
+            • <b>Bolso / Mochila de Mano:</b> Máximo <b>5 kg</b>. Aquí deben ir sí o sí los <b>documentos en mano, medicamentos con receta, cargador/power bank y artículos de valor</b>.
+          </div>
+
+          <div class="info-pill alert">
+            <strong>2) ¡PROHIBIDO EN AEROPUERTO! (Lo botan en control)</strong>
+            • <b>Nada cortopunzante en el bolso de mano:</b> Cero cuchillos, cortaúñas, tijeras, cortacartones, destornilladores ni herramientas.<br>
+            • <b>Nada peligroso en ningún equipaje:</b> Prohibido llevar <b>aerosoles, combustibles, explosivos</b> o líquidos fuera de norma (en cabina máximo envases de 100 ml).
+          </div>
+
+          <div class="info-pill alert">
+            <strong>3) Tolerancia Cero Alcohol y Sustancias</strong>
+            • Queda <b>estrictamente prohibido</b> el consumo, porte o ingreso de alcohol o sustancias ilícitas en todo el viaje (hotel, playas, buses, discos).<br>
+            • Su incumplimiento conlleva multas de la agencia y el retiro inmediato del estudiante por su apoderado en destino.<br>
+            • <b>Autocuidado:</b> No aceptar bebidas de desconocidos ni dejar vasos sin supervisión.
+          </div>
+
+          <div class="info-pill warn">
+            <strong>4) Salud, Agua y Qué Empacar</strong>
+            • <b>Agua y comida:</b> <b>NO tomar agua de la llave</b> (solo agua embotellada) y <b>NO comprar comida callejera</b>.<br>
+            • <b>Botiquín personal (estuche con cierre):</b> Remedios para dolor de cabeza, estómago, oídos, alergias, bloqueador solar alto, aftersun, alcohol gel y un repelente pequeño para llegar (allá se compra el local).<br>
+            • <b>Tratamientos médicos:</b> Van en bolso de mano con receta y al llegar se entregan a <b>Carolina Marchant</b>.<br>
+            • <b>Ropa marcada:</b> Hacer maleta junto al apoderado; llevar toalla de playa de microfibra, ropa blanca (Disco Blanco), polera microfibra de la agencia y botella reutilizable.
+          </div>
+
+          <div class="info-pill success">
+            <strong>5) Convivencia y Apoderados Acompañantes</strong>
+            • <b>Habitaciones:</b> Prohibido el ingreso de personas ajenas al curso (otros colegios o cursos).<br>
+            • <b>Puntualidad:</b> Respetar horarios de mañana y participación obligatoria en actividades.<br>
+            • <b>Equipo a cargo:</b> <b>Carolina Marchant</b> (vínculo agencia, docs, medicamentos y reportes 2 veces al día), <b>Natalia Soto</b> (acompañamiento niñas) y <b>Juan Pablo Cortés</b> (acompañamiento niños y botiquín del curso).
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==========================================
+         MODAL 3: PERMISO NOTARIAL Y DOCUMENTOS
          ========================================== -->
     <div id="modalNotaria" class="modal-overlay" onclick="closeOnBackdrop(event, 'modalNotaria')">
       <div class="modal-card">
         <div class="modal-header notaria-head">
-          <div class="modal-title">📄 Trámite Permiso Notarial de Viaje</div>
+          <div class="modal-title">📄 Permiso Notarial & Documentos</div>
           <button type="button" class="close-modal-btn" onclick="closeModal('modalNotaria')" aria-label="Cerrar">✕</button>
         </div>
         <div class="modal-body">
           <div class="info-pill">
-            <strong>1) Lugar del Trámite</strong>
+            <strong>1) Lugar del Trámite Notarial</strong>
             <b>Primera Notaría N° 1 de Puente Alto</b><br>
-            📍 Dirección: <b>Manuel Rodríguez 053, Local 115</b> (Galería Oasis, al costado de Plaza de Armas de Puente Alto).<br>
-            ☎️ Teléfono Notaría: 22 266 0966
+            📍 Dirección: <b>Manuel Rodríguez 053, Local 115</b> (Galería Oasis, costado Plaza de Armas Puente Alto) • Tel: 22 266 0966.
           </div>
 
           <div class="info-pill warn">
-            <strong>2) Ejecutiva Asignada (Exclusivo)</strong>
-            Atenderse únicamente con nuestra ejecutiva asignada: <b>Andrea Blanco — Módulo 3</b>.
-          </div>
-
-          <div class="info-pill">
-            <strong>3) Horarios de Atención</strong>
-            • <b>Lunes a Viernes:</b> 09:00 a 13:00 hrs y de 14:00 a 16:30 hrs.<br>
+            <strong>2) Ejecutiva Asignada & Horarios</strong>
+            • Atenderse exclusivamente con <b>Andrea Blanco — Módulo 3</b>.<br>
+            • <b>Lunes a Viernes:</b> 09:00 a 13:00 y 14:00 a 16:30 hrs.<br>
             • <b>Turno Especial Sábado 14 de Noviembre:</b> 09:00 a 13:00 hrs.
           </div>
 
           <div class="info-pill alert">
-            <strong>4) Requisitos Obligatorios y Entrega</strong>
-            • El poder notarial debe realizarse <b>SÍ O SÍ por ambos padres de forma presencial</b> (con cédulas de identidad vigentes).<br>
-            • Al firmar, por cada alumno entregan <b>3 documentos originales</b> incluida la firma digital.<br>
-            • <i>Revisar cuidadosamente que todos los nombres y RUT estén bien escritos antes de firmar.</i>
+            <strong>3) Requisitos y Control en Aeropuerto</strong>
+            • Firma <b>presencial de ambos padres</b> con cédula vigente (entregan 3 copias originales por alumno; revisar nombres y RUT).<br>
+            • <b>Cédula de Identidad:</b> Vigente, en buen estado y con <b>vencimiento mínimo de 6 meses</b> desde el regreso (22 dic 2026).<br>
+            • Tras Policía Internacional, cada alumno entrega su cédula a <b>Carolina Marchant</b> para resguardo y recibe una fotocopia para andar en Camboriú.
           </div>
 
           <div class="croquis-card">
@@ -1021,43 +1124,43 @@
     </div>
 
     <!-- ==========================================
-         VENTANA EMERGENTE 3: TARJETA & PAGOS PIX BRASIL
+         MODAL 4: TARJETA PIX Y DINERO EN BRASIL
          ========================================== -->
     <div id="modalPix" class="modal-overlay" onclick="closeOnBackdrop(event, 'modalPix')">
       <div class="modal-card">
         <div class="modal-header pix-head">
-          <div class="modal-title">💳 Tarjeta Prepago & Pagos PIX en Brasil</div>
+          <div class="modal-title">💳 Tarjeta PIX & Dinero en Brasil</div>
           <button type="button" class="close-modal-btn" onclick="closeModal('modalPix')" aria-label="Cerrar">✕</button>
         </div>
         <div class="modal-body">
           <div class="info-pill">
-            <strong>1) ¿Qué es PIX y por qué conviene llevarlo?</strong>
-            <b>PIX</b> es el sistema oficial de pago instantáneo con código QR de Brasil. Se acepta en <b>todos lados</b> (playa, kioscos, malls, Uber, restaurantes y parques), evita andar con mucho efectivo y ofrece un tipo de cambio directo desde pesos chilenos (CLP) a reales (BRL) sin comisión internacional.
+            <strong>1) ¿Qué es PIX y por qué llevarlo?</strong>
+            <b>PIX</b> es el pago instantáneo con QR oficial de Brasil. Se usa en playas, kioscos, malls y restaurantes, evitando andar con mucho efectivo y cambiando directo de pesos (CLP) a reales (BRL).
           </div>
 
           <div class="info-pill success">
-            <strong>2) ¿Cómo sacarla desde Chile? (Paso a Paso)</strong>
-            • <b>Opción Digital Rápida (App desde el celular):</b> Descarga una billetera/tarjeta prepago chilena habilitada con PIX en Brasil (como <b>Tenpo, Mercado Pago, Prex o Global66</b>).<br>
-            • <b>Para menores de 18 años (14 a 17 años):</b> Se crea la cuenta en la App y el <b>apoderado autoriza desde su celular</b> con la cédula de identidad vigente de ambos.<br>
-            • Se carga con transferencia desde cualquier banco chileno y se pide la <b>tarjeta física</b> con envío a domicilio (demora aprox. 3 a 5 días hábiles) para tener respaldo sin internet.
-          </div>
-
-          <div class="info-pill warn">
-            <strong>3) ¿Dónde obtenerla presencialmente en Puente Alto?</strong>
-            Si prefieres retirar o gestionar una tarjeta prepago/cuenta presencialmente en la comuna:<br>
-            • <b>Mall Plaza Tobalaba</b> (Av. Camilo Henríquez 3296, Puente Alto): Módulos de atención y sucursales bancarias/retail (Lunes a Domingo 10:00 a 20:00 hrs).<br>
-            • <b>Centro de Puente Alto / Plaza de Armas</b> (Av. Concha y Toro / Manuel Rodríguez): Sucursales BancoEstado (CuentaRUT Visa Débito habilitada para uso internacional previo aviso en App) y puntos de carga/retiro.
+            <strong>2) Cómo sacarla desde Chile (App + Tarjeta Física)</strong>
+            • Descarga una app chilena con PIX en Brasil (<b>Tenpo, Mercado Pago, Prex o Global66</b>).<br>
+            • Para menores de 18 años, el <b>apoderado autoriza desde su celular</b> con ambas cédulas vigentes.<br>
+            • Pide la <b>tarjeta física</b> con envío a domicilio (3 a 5 días hábiles) para tener respaldo sin internet y activa el <b>"Uso Internacional"</b> 48 horas antes de volar.
           </div>
 
           <div class="info-pill alert">
-            <strong>4) Consejos Clave antes de Viajar</strong>
-            • Activa el <b>"Uso Internacional"</b> en la App 48 horas antes del vuelo.<br>
-            • Lleva siempre la <b>tarjeta física + clave PIN de 4 dígitos</b> (en Brasil siempre se paga como <i>"Crédito"</i> aunque sea prepago/débito) y un pequeño respaldo en Reales en efectivo.
+            <strong>3) Regla de Oro del Protocolo (¡Ojo con Comisiones!)</strong>
+            • <b>Comprar Reales en Chile</b> antes del viaje (cada alumno cuida su dinero).<br>
+            • Al pagar con tarjeta en Brasil, elegir siempre modalidad <b>"CRÉDITO"</b> (el protocolo advierte evitar débito tradicional porque cobra comisiones internacionales mucho más altas).<br>
+            • Contratar un <b>plan Roaming de datos</b> para mantener comunicación y poder escanear códigos QR PIX.
+          </div>
+
+          <div class="info-pill warn">
+            <strong>4) Puntos Presenciales en Puente Alto</strong>
+            • <b>Mall Plaza Tobalaba</b> (Av. Camilo Henríquez 3296): Módulos de tarjetas prepago/retail (Lun a Dom 10:00 a 20:00 hrs).<br>
+            • <b>Centro Puente Alto / Plaza de Armas</b> (Concha y Toro / Manuel Rodríguez): Sucursales bancarias y casas de cambio.
           </div>
 
           <div class="action-links">
             <a href="https://www.google.com/maps/search/?api=1&query=Mall+Plaza+Tobalaba+Puente+Alto+Chile" target="_blank" rel="noopener noreferrer" class="modal-cta-btn cta-maps">
-              📍 Ver Módulos en Mall Plaza Tobalaba (Maps)
+              📍 Ver Módulos Mall Plaza Tobalaba (Maps)
             </a>
             <a href="https://www.google.com/maps/search/?api=1&query=Bancos+Plaza+de+Armas+Puente+Alto+Chile" target="_blank" rel="noopener noreferrer" class="modal-cta-btn cta-web">
               🏦 Ver Sucursales Centro Puente Alto (Maps)
@@ -1068,21 +1171,22 @@
     </div>
 
     <!-- ==========================================
-         VENTANA EMERGENTE 4: PORTUGUÉS BÁSICO CON AUDIO
+         MODAL 5: PORTUGUÉS BÁSICO AMPLIADO (32 FRASES CON AUDIO)
          ========================================== -->
     <div id="modalPortugues" class="modal-overlay" onclick="closeOnBackdrop(event, 'modalPortugues')">
       <div class="modal-card">
         <div class="modal-header pt-head">
-          <div class="modal-title">🇧🇷 Portugués Básico • Modo Camboriú</div>
+          <div class="modal-title">🇧🇷 Portugués Básico • 32 Frases con Audio</div>
           <button type="button" class="close-modal-btn" onclick="closeModal('modalPortugues')" aria-label="Cerrar">✕</button>
         </div>
         <div class="modal-body">
           <div class="pt-tabs">
-            <button type="button" class="pt-tab-btn active" onclick="renderPtCategory('saludos', this)">👋 Saludos</button>
-            <button type="button" class="pt-tab-btn" onclick="renderPtCategory('compras', this)">🥥 Compras</button>
-            <button type="button" class="pt-tab-btn" onclick="renderPtCategory('ayuda', this)">🏖️ Playa/SOS</button>
+            <button type="button" class="pt-tab-btn active" onclick="renderPtCategory('saludos', this)">👋 Saludos (8)</button>
+            <button type="button" class="pt-tab-btn" onclick="renderPtCategory('comida', this)">🥥 Playa/Comida (8)</button>
+            <button type="button" class="pt-tab-btn" onclick="renderPtCategory('compras', this)">💳 Compras/PIX (8)</button>
+            <button type="button" class="pt-tab-btn" onclick="renderPtCategory('ayuda', this)">🆘 Hotel/SOS (8)</button>
           </div>
-          <div id="ptPhrasesList" style="display:flex; flex-direction:column; gap:0.55em;"></div>
+          <div id="ptPhrasesList" style="display:flex; flex-direction:column; gap:0.5em;"></div>
         </div>
       </div>
     </div>
@@ -1176,49 +1280,50 @@
     const polarBubble = document.getElementById('polarBubble');
 
     const polarPhrases = [
-      // Recordatorios de qué llevar
-      'Polar recuerda: lleva bloqueador solar FPS 50+ 🧴',
-      'Polar dice: no olvides tus lentes de sol y gorro 😎',
-      'Polar avisa: empaca traje de baño y toalla de playa 🏖️',
-      'Polar recuerda: lleva cargador portátil (power bank) 🔋',
-      'Polar dice: lleva sandalias cómodas para caminar en la arena 🩴',
-      'Polar avisa: guarda una muda de ropa en el bolso de mano 🎒',
-      'Polar recuerda: lleva botella reutilizable para hidratarte 💧',
-      'Polar dice: no olvides repelente para la tarde en Brasil 🦟',
-      'Polar avisa: lleva tu polerón del IV° Medio A para el avión 🧥',
-      'Polar recuerda: lleva tus remedios personales con receta 💊',
+      // Seguridad aeropuerto y prohibiciones críticas
+      'Polar advierte: ¡cero alcohol ni sustancias en todo el viaje! 🚫',
+      'Polar avisa: ¡nada cortopunzante ni cortaúñas en el bolso de mano! ✂️',
+      'Polar recuerda: ¡no lleves aerosoles ni cosas inflamables, los botan! ⚠️',
+      'Polar dice: medicamentos con receta van en tu mochila de mano 💊',
+      'Polar recuerda: maleta de bodega máx. 23 kg y bolso de mano 5 kg 🧳',
+      'Polar avisa: ¡no tomes agua de la llave, solo agua embotellada! 💧',
+      'Polar dice: no compres comida callejera para cuidar tu guatita 🍔',
+      'Polar recuerda: nunca aceptes bebidas de desconocidos ni descuides tu vaso 👀',
 
-      // Recordatorios de tarjeta PIX y documentos
-      'Polar recuerda: activa el uso internacional de tu tarjeta PIX 💳',
-      'Polar dice: guarda bien tu clave PIN de 4 dígitos 🔢',
-      'Polar avisa: en Brasil se paga diciendo "Crédito" 🇧🇷',
-      'Polar recuerda: revisa el permiso notarial con ambos padres 📄',
-      'Polar dice: lleva tu cédula de identidad vigente y en buen estado 🪪',
-      'Polar avisa: lleva un poco de reales en efectivo por si acaso 💵',
-      'Polar recuerda: descarga la app de tu tarjeta antes de volar 📲',
+      // Documentos, tarjeta PIX y dinero
+      'Polar dice: activa el uso internacional de tu tarjeta PIX antes de volar 💳',
+      'Polar avisa: en Brasil paga siempre como "Crédito", nunca débito 🇧🇷',
+      'Polar recuerda: compra reales en Chile y cuida bien tu plata 💵',
+      'Polar dice: permiso notarial firmado por ambos padres en Puente Alto 📄',
+      'Polar avisa: tu cédula debe tener más de 6 meses de vigencia 🪪',
+      'Polar recuerda: Terminal 2, Puerta 4, Piso 3 a las 11:45 hrs ✈️',
 
-      // Frases graciosas estilo Polar
+      // Qué llevar en la maleta
+      'Polar recuerda: lleva bloqueador solar FPS 50+ y aftersun 🧴',
+      'Polar dice: lleva toalla de playa de microfibra, se seca súper rápido 🏖️',
+      'Polar avisa: marca toda tu ropa y ponle candado a tu maleta 🔒',
+      'Polar recuerda: lleva tenida blanca para la Disco Blanco de Blumenau 🤍',
+      'Polar dice: lleva repelente pequeño para llegar y compra uno local allá 🦟',
+      'Polar avisa: lleva cargador portátil (power bank) y botella reutilizable 🔋',
+
+      // Humor estilo Polar
       'Polar ya entrenó para tomar agua de coco todo el día 🥥',
       'Polar no comparte sus papas fritas en la playa 🍟',
-      'Polar habla portugués fluido: "Oi, tudo bem" 🐻‍❄️',
-      'Polar dice: el que se queda dormido pierde el desayuno ⏰',
-      'Polar recomienda practicar baile antes de las fiestas 🕺',
-      'Polar está listo para el tobogán más alto de Camboriú 🌊',
-      'Polar asegura que este viaje será legendario 📸',
+      'Polar habla portugués fluido: "Oi, tudo bem, Camboriú" 🐻‍❄️',
+      'Polar dice: el que se queda dormido pierde el desayuno del hotel ⏰',
+      'Polar está listo para los toboganes de Beto Carrero World 🎢',
 
-      // Frases de entusiasmo por el viaje
-      '¡IV° Medio A Colegio Altazor rumbo a Camboriú! ✈️',
-      '¡Falta cada vez menos para pisar la playa de Brasil! 🌴',
-      '¡Generación 2027, prepárense para la mejor gira! 🎉',
+      // Entusiasmo gira de estudio
+      '¡IV° Medio A Colegio Altazor rumbo a Balneario Camboriú! 🚀',
+      '¡Generación 2027, se viene la mejor gira de nuestras vidas! 🎉',
+      '¡Falta cada vez menos para subirnos al Barco Pirata! 🏴‍☠️',
       '¡Modo vacaciones activado al 100% en Santa Catarina! ☀️',
-      '¡Dale play a la música y entra en modo Brasil! 🎵',
-      '¡La cuenta regresiva no para, nos vamos a Camboriú! 🚀'
+      '¡Dale play a la música y practica tu portugués con Polar! 🎵'
     ];
 
     const burstIcons = ['🥥', '🌴', '😎', '☀️', '✈️', '🇧🇷', '🏖️'];
     let lastPhraseIdx = -1;
     let bubbleHideTimeout = null;
-    let autoCycleInterval = null;
 
     function isAnyModalOpen() {
       return document.querySelector('.modal-overlay.active') !== null;
@@ -1239,7 +1344,7 @@
       clearTimeout(bubbleHideTimeout);
       bubbleHideTimeout = setTimeout(() => {
         polarBubble.classList.remove('visible');
-      }, 4200);
+      }, 4500);
 
       if (withBurst) {
         const rect = polarHotspot.getBoundingClientRect();
@@ -1273,12 +1378,11 @@
     // Inicio automático de frases de Polar cada 6.5 segundos
     setTimeout(() => {
       showRandomPolarPhrase(false);
-      autoCycleInterval = setInterval(() => {
+      setInterval(() => {
         showRandomPolarPhrase(false);
       }, 6500);
     }, 1500);
 
-    // También responde al tocar directamente al oso con lluvia de íconos
     polarHotspot.addEventListener('click', () => showRandomPolarPhrase(true));
     polarHotspot.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
@@ -1288,29 +1392,48 @@
     });
 
     // ==========================================
-    // 3. MINI-DICCIONARIO DE PORTUGUÉS CON VOZ
+    // 3. MINI-DICCIONARIO PORTUGUÉS AMPLIADO (32 FRASES CON AUDIO)
     // ==========================================
     const ptData = {
       saludos: [
         { pt: 'Oi, tudo bem?', pron: 'Se lee: "Oy, tudu bein"', es: 'Hola, ¿todo bien?' },
-        { pt: 'Bom dia / Boa tarde', pron: 'Se lee: "Bon yía / Boa tardi"', es: 'Buenos días / Buenas tardes' },
+        { pt: 'Bom dia / Boa tarde / Boa noite', pron: 'Se lee: "Bon yía / Boa tardi / Boa noiti"', es: 'Buenos días / Buenas tardes / Buenas noches' },
         { pt: 'Muito obrigado / obrigada', pron: 'Se lee: "Muintu obrigadu / obrigada"', es: 'Muchas gracias (hombre / mujer)' },
         { pt: 'Por favor / Com licença', pron: 'Se lee: "Por favor / Kon lisensa"', es: 'Por favor / Con permiso' },
-        { pt: 'Não falo português, sou do Chile', pron: 'Se lee: "Naun falu portugués, sou du Shili"', es: 'No hablo portugués, soy de Chile' }
+        { pt: 'Desculpa / Foi mal', pron: 'Se lee: "Deskulpa / Foy mal"', es: 'Disculpa / Perdón (juvenil)' },
+        { pt: 'Prazer em conhecer você', pron: 'Se lee: "Prazer ein koñeser vosé"', es: 'Mucho gusto en conocerte' },
+        { pt: 'Não falo português, sou do Chile', pron: 'Se lee: "Naun falu portugués, sou du Shili"', es: 'No hablo portugués, soy de Chile' },
+        { pt: 'Pode falar mais devagar, por favor?', pron: 'Se lee: "Podyi falar mais devagar, por favor"', es: '¿Puede hablar más despacio, por favor?' }
+      ],
+      comida: [
+        { pt: 'Quero uma água mineral sem gás', pron: 'Se lee: "Keru uma agua mineral sein gas"', es: 'Quiero un agua mineral sin gas' },
+        { pt: 'Uma água de coco bem gelada', pron: 'Se lee: "Uma agua de koku bein yelada"', es: 'Un agua de coco bien helada' },
+        { pt: 'Quero um açaí com banana e granola', pron: 'Se lee: "Keru un asaí kon banana i granola"', es: 'Quiero un açaí con plátano y granola' },
+        { pt: 'Sem gelo, por favor', pron: 'Se lee: "Sein yelu, por favor"', es: 'Sin hielo, por favor' },
+        { pt: 'O cardápio, por favor', pron: 'Se lee: "U kardápiu, por favor"', es: 'La carta / el menú, por favor' },
+        { pt: 'Está muito gostoso!', pron: 'Se lee: "Está muintu gostozu"', es: '¡Está muy rico!' },
+        { pt: 'Não como carne / Sou alérgico a...', pron: 'Se lee: "Naun komu karni / Sou aléryiku a..."', es: 'No como carne / Soy alérgico a...' },
+        { pt: 'A conta, por favor', pron: 'Se lee: "A konta, por favor"', es: 'La cuenta, por favor' }
       ],
       compras: [
         { pt: 'Quanto custa isso?', pron: 'Se lee: "Kuantu kusta isu"', es: '¿Cuánto cuesta esto?' },
-        { pt: 'Aceita PIX ou cartão de crédito?', pron: 'Se lee: "Aseita Piks ou kartaun de kréditu"', es: '¿Acepta PIX o tarjeta de crédito?' },
-        { pt: 'Quero uma água de coco gelada', pron: 'Se lee: "Keru uma agua de koku yelada"', es: 'Quiero un agua de coco helada' },
-        { pt: 'A conta, por favor', pron: 'Se lee: "A konta, por favor"', es: 'La cuenta, por favor' },
-        { pt: 'Tem desconto à vista?', pron: 'Se lee: "Tein deskontu a vista"', es: '¿Tiene descuento al contado?' }
+        { pt: 'Aceita pagamento com PIX?', pron: 'Se lee: "Aseita pagamentu kon Piks"', es: '¿Acepta pago con PIX?' },
+        { pt: 'Vou pagar no cartão de crédito', pron: 'Se lee: "Vou pagar nu kartaun de kréditu"', es: 'Voy a pagar con tarjeta de crédito' },
+        { pt: 'Tem desconto à vista no dinheiro?', pron: 'Se lee: "Tein deskontu a vista nu yiñeiru"', es: '¿Tiene descuento al contado en efectivo?' },
+        { pt: 'Qual é o tamanho P, M ou G?', pron: 'Se lee: "Kual é u tamañu Pe, Emi ou Ye"', es: '¿Cuál es talla S, M o L?' },
+        { pt: 'Posso experimentar?', pron: 'Se lee: "Posu experimentar"', es: '¿Me lo puedo probar?' },
+        { pt: 'Quero comprar protetor solar', pron: 'Se lee: "Keru konprar protetor solar"', es: 'Quiero comprar bloqueador solar' },
+        { pt: 'Preciso de uma sacola, por favor', pron: 'Se lee: "Presizu de uma sakola, por favor"', es: 'Necesito una bolsa, por favor' }
       ],
       ayuda: [
         { pt: 'Onde fica a praia?', pron: 'Se lee: "Ondi fika a praya"', es: '¿Dónde queda la playa?' },
         { pt: 'Onde fica o banheiro?', pron: 'Se lee: "Ondi fika u bañeru"', es: '¿Dónde queda el baño?' },
+        { pt: 'Qual é a senha do Wi-Fi?', pron: 'Se lee: "Kual é a seña du Uai-Fai"', es: '¿Cuál es la clave del Wi-Fi?' },
+        { pt: 'Estou hospedado no Hotel Plaza Camboriú', pron: 'Se lee: "Estóu ospedadu nu Otel Plaza Kamboriú"', es: 'Me alojo en el Hotel Plaza Camboriú' },
+        { pt: 'Onde fica o ponto de encontro do ônibus?', pron: 'Se lee: "Ondi fika u pontu de enkontru du ónibus"', es: '¿Dónde está el punto de encuentro del bus?' },
         { pt: 'Preciso de ajuda, por favor', pron: 'Se lee: "Presizu de ayúda, por favor"', es: 'Necesito ayuda, por favor' },
-        { pt: 'Estou perdido, procuro meu grupo', pron: 'Se lee: "Estóu peryídu, prokurú meu grupu"', es: 'Estoy perdido, busco a mi grupo' },
-        { pt: 'Qual é a senha do Wi-Fi?', pron: 'Se lee: "Kual é a seña du Uai-Fai"', es: '¿Cuál es la clave del Wi-Fi?' }
+        { pt: 'Onde tem uma farmácia perto?', pron: 'Se lee: "Ondi tein uma farmásia pertu"', es: '¿Dónde hay una farmacia cerca?' },
+        { pt: 'Estou perdido, procuro meu grupo do Chile', pron: 'Se lee: "Estóu peryídu, prokurú meu grupu du Shili"', es: 'Estoy perdido, busco a mi grupo de Chile' }
       ]
     };
 
