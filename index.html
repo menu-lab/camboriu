@@ -790,7 +790,7 @@
 
     <!-- Controles Apilados Verticalmente (Uno arriba del otro, sin tapar el título) -->
     <div class="top-right-tools">
-      <button id="musicToggle" class="mini-tool-btn music-btn" type="button" aria-label="Reproducir música" title="Música Brasil">
+      <button id="musicToggle" class="mini-tool-btn music-btn" type="button" aria-label="Reproducir o pausar música" title="Música Brasil">
         <svg id="iconPlay" viewBox="0 0 24 24" aria-hidden="true">
           <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
         </svg>
@@ -1149,7 +1149,7 @@
     }, 7000);
 
     // ==========================================
-    // 1. SISTEMA DE MÚSICA ALEATORIA (3 MP3)
+    // 1. SISTEMA DE MÚSICA AUTOMÁTICA + BOTÓN DE APAGADO/ENCENDIDO
     // ==========================================
     const playlist = ['1.mp3', '2.mp3', '3.mp3'];
 
@@ -1159,6 +1159,7 @@
     const iconPause = document.getElementById('iconPause');
 
     let isPlaying = false;
+    let userPaused = false; // Respeta si el usuario apagó la música manualmente
     let currentIndex = -1;
 
     function pickRandomTrack(excludeIndex = -1) {
@@ -1170,37 +1171,76 @@
       return nextIndex;
     }
 
-    function loadInitialTrack() {
-      currentIndex = pickRandomTrack();
-      audio.src = playlist[currentIndex];
-    }
-
-    loadInitialTrack();
-
-    audio.addEventListener('ended', () => {
-      currentIndex = pickRandomTrack(currentIndex);
-      audio.src = playlist[currentIndex];
-      audio.play().catch(() => {});
-    });
-
-    musicBtn.addEventListener('click', () => {
-      if (!isPlaying) {
-        audio.play().then(() => {
-          isPlaying = true;
-          musicBtn.classList.add('playing');
-          mainCanvas.classList.add('music-active');
-          iconPlay.style.display = 'none';
-          iconPause.style.display = 'block';
-        }).catch((err) => {
-          console.warn('No se pudo reproducir el audio. Verifica que 1.mp3, 2.mp3 y 3.mp3 estén en la misma carpeta.', err);
-        });
+    function setMusicUI(playing) {
+      isPlaying = playing;
+      if (playing) {
+        musicBtn.classList.add('playing');
+        mainCanvas.classList.add('music-active');
+        iconPlay.style.display = 'none';
+        iconPause.style.display = 'block';
       } else {
-        audio.pause();
-        isPlaying = false;
         musicBtn.classList.remove('playing');
         mainCanvas.classList.remove('music-active');
         iconPlay.style.display = 'block';
         iconPause.style.display = 'none';
+      }
+    }
+
+    function startMusicAuto() {
+      if (isPlaying || userPaused) return;
+      audio.play().then(() => {
+        setMusicUI(true);
+        removeAutoUnlockListeners();
+      }).catch(() => {
+        // Si el navegador exige interacción previa, se activará al primer toque
+      });
+    }
+
+    function removeAutoUnlockListeners() {
+      ['pointerdown', 'touchstart', 'click', 'keydown'].forEach(evt => {
+        document.removeEventListener(evt, handleFirstInteraction);
+      });
+    }
+
+    function handleFirstInteraction(e) {
+      // Si el primer toque fue directamente en el botón de música, lo maneja su propio click
+      if (e.target.closest && e.target.closest('#musicToggle')) return;
+      startMusicAuto();
+    }
+
+    // Carga pista inicial e intenta iniciar automáticamente
+    currentIndex = pickRandomTrack();
+    audio.src = playlist[currentIndex];
+    startMusicAuto();
+
+    // Respaldo: activa al primer toque en cualquier parte si el navegador bloqueó el autoplay puro
+    ['pointerdown', 'touchstart', 'click', 'keydown'].forEach(evt => {
+      document.addEventListener(evt, handleFirstInteraction, { passive: true });
+    });
+
+    audio.addEventListener('ended', () => {
+      currentIndex = pickRandomTrack(currentIndex);
+      audio.src = playlist[currentIndex];
+      if (!userPaused) {
+        audio.play().then(() => setMusicUI(true)).catch(() => {});
+      }
+    });
+
+    musicBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (!isPlaying) {
+        userPaused = false;
+        audio.play().then(() => {
+          setMusicUI(true);
+          removeAutoUnlockListeners();
+        }).catch((err) => {
+          console.warn('No se pudo reproducir el audio. Verifica 1.mp3, 2.mp3 y 3.mp3.', err);
+        });
+      } else {
+        userPaused = true;
+        audio.pause();
+        setMusicUI(false);
+        removeAutoUnlockListeners();
       }
     });
 
