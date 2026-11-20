@@ -1117,42 +1117,36 @@
 
   <script>
     // ==========================================
-    // 0. ROTACIÓN ALEATORIA DE FONDOS CADA 10 SEGUNDOS (SIN PARPADEOS)
+    // 0. ROTACIÓN CORRELATIVA AUTOMÁTICA DE TODOS LOS FONDOS CADA 7 SEGUNDOS
+    // Recorre fondo1.jpg, fondo2.jpg, fondo3.jpg... hasta el último y reinicia
     // ==========================================
     const mainCanvas = document.getElementById('mainCanvas');
-    const fondosDisponibles = [
-      'fondo1.jpg',
-      'fondo2.jpg',
-      'fondo3.jpg',
-      'fondo4.jpg',
-      'fondo5.jpg'
-    ];
+    let currentBgIndex = 1;
 
-    let currentBg = '';
-
-    function changeRandomBackground() {
-      if (fondosDisponibles.length === 0) return;
-
-      let pool = fondosDisponibles;
-      if (fondosDisponibles.length > 1 && currentBg) {
-        const filtered = fondosDisponibles.filter(name => name !== currentBg);
-        if (filtered.length > 0) pool = filtered;
-      }
-
-      const nextBg = pool[Math.floor(Math.random() * pool.length)];
-
-      // Precarga en memoria antes de aplicar para evitar destellos blancos
+    function loadSequentialBackground(index) {
+      const candidate = `fondo${index}.jpg`;
       const imgLoader = new Image();
+
       imgLoader.onload = () => {
-        currentBg = nextBg;
-        mainCanvas.style.backgroundImage = `url('${nextBg}')`;
+        currentBgIndex = index;
+        mainCanvas.style.backgroundImage = `url('${candidate}')`;
       };
-      imgLoader.src = nextBg;
+
+      imgLoader.onerror = () => {
+        // Si ya no existe el siguiente número, vuelve automáticamente a fondo1.jpg
+        if (index > 1) {
+          loadSequentialBackground(1);
+        }
+      };
+
+      imgLoader.src = candidate;
     }
 
-    // Inicia al abrir la página y rota cada 10 segundos (10000 ms)
-    changeRandomBackground();
-    setInterval(changeRandomBackground, 10000);
+    // Inicia en fondo1.jpg y avanza correlativamente cada 7 segundos (7000 ms)
+    loadSequentialBackground(1);
+    setInterval(() => {
+      loadSequentialBackground(currentBgIndex + 1);
+    }, 7000);
 
     // ==========================================
     // 1. SISTEMA DE MÚSICA ALEATORIA (3 MP3)
